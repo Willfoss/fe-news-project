@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { getCommentsByArticleId } from "../api";
-import { SquareArrowUp, SquareArrowDown } from "lucide-react";
+
+import CommentVote from "./CommentVote";
+import Loading from "./Loading";
 
 export default function CommentsList(props) {
   const { article_id } = props;
@@ -23,6 +25,14 @@ export default function CommentsList(props) {
       });
   }, [article_id]);
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (isError) {
+    return <Error />;
+  }
+
   return (
     <ul className="max-w-[400px] flex-col justify-center items-center ">
       {commentsList.map((comment) => {
@@ -31,11 +41,7 @@ export default function CommentsList(props) {
             <p>{comment.author}</p>
             <p>Posted on: {comment.created_at.slice(0, 10)}</p>
             <p>{comment.body}</p>
-            <div className="card-body flex-row justify-startitems-center">
-              <SquareArrowUp className="hover:text-green-500"></SquareArrowUp>
-              <h3>{comment.votes}</h3>
-              <SquareArrowDown className="hover:text-red-500"></SquareArrowDown>
-            </div>
+            <CommentVote comment={comment} />
           </li>
         );
       })}
