@@ -8,6 +8,8 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("theme", theme === "light" ? "light" : "dark");
+    document.querySelector("html").classList.remove("dark", "light");
+    document.querySelector("html").classList.add(theme);
   }, [theme]);
 
   const toggleTheme = () => {
@@ -16,8 +18,6 @@ export const ThemeProvider = ({ children }) => {
     } else {
       setTheme("dark");
     }
-    document.querySelector("html").classList.remove("dark", "light");
-    document.querySelector("html").classList.add(theme);
   };
 
   return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
