@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../api";
-import { SquareArrowUp, SquareArrowDown, MessageCircle } from "lucide-react";
+import { SquareArrowUp, SquareArrowDown } from "lucide-react";
 import Loading from "./Loading";
 
 export default function SingleArticle() {
