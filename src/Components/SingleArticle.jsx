@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../api";
-import { SquareArrowUp, SquareArrowDown, MessageCircle } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import Loading from "./Loading";
 import CommentsList from "./CommentsList";
+import ArticleVotes from "./ArticleVotes";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
+  const [singleArticleVote, setSingleArticleVote] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [date, setDate] = useState("");
@@ -18,6 +20,7 @@ export default function SingleArticle() {
       .then((article) => {
         setSingleArticle(article);
         setDate(article.created_at.slice(0, 10));
+        setSingleArticleVote(article.votes);
         setIsLoading(false);
       })
       .catch(() => {
@@ -27,11 +30,11 @@ export default function SingleArticle() {
   }, [article_id]);
 
   if (isLoading) {
-    <Loading />;
+    return <Loading />;
   }
 
   if (isError) {
-    <Error />;
+    return <Error />;
   }
 
   return (
@@ -45,9 +48,7 @@ export default function SingleArticle() {
         <p className="text-small">Posted on {date}</p>
         <p>{singleArticle.body}</p>
         <div className="card-body flex-row justify-startitems-center">
-          <SquareArrowUp className="hover:text-green-500"></SquareArrowUp>
-          <h3>{singleArticle.votes}</h3>
-          <SquareArrowDown className="hover:text-red-500"></SquareArrowDown>
+          <ArticleVotes className="card-body flex-row justify-start items-center" article={singleArticle} />
           <p className="flex justify-end">{singleArticle.comment_count}</p>
           <MessageCircle />
         </div>
