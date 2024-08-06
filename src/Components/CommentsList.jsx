@@ -6,6 +6,7 @@ import CommentVote from "./CommentVote";
 import Loading from "./Loading";
 import PostComment from "./PostComment";
 import { UserContext } from "../Context/UserContext";
+import CommentDelete from "./CommentDelete";
 
 export default function CommentsList(props) {
   const { article_id, setOptimisticCommentCount } = props;
@@ -55,11 +56,15 @@ export default function CommentsList(props) {
           <CommentVote comment={temporaryPostedComment} />
         </div>
       )}
-      <ul className="max-w-[400px] flex-col justify-center items-center ">
+      <ul className="max-w-[400px] w-[400px] flex-col justify-center items-center ">
         {commentsList.map((comment) => {
           return (
-            <li className="shadow-md p-2 mt-3 mb-3" key={comment.comment_id}>
-              <p>{comment.author}</p>
+            <li className=" group shadow-md p-2 mt-3 mb-3" key={comment.comment_id}>
+              <div className="flex justify-between">
+                <p>{comment.author}</p>
+                <CommentDelete comment_id={comment.comment_id} />
+              </div>
+
               <p>Posted on: {comment.created_at.slice(0, 10)}</p>
               <p>{comment.body}</p>
               <CommentVote comment={comment} />
