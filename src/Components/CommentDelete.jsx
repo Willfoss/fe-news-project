@@ -5,18 +5,13 @@ import { Link } from "react-router-dom";
 import { deleteCommentByArticleId } from "../api";
 
 export default function CommentDelete(props) {
-  const { comment_id } = props;
+  const { comment_id, setOptimisticCommentCount } = props;
 
   function handleDeleteClick(event) {
-    console.log(event);
-    console.log(comment_id);
     document.getElementById(`confirmDeleteModal${comment_id}`).showModal();
   }
 
   function handleConfirmDeleteClick(event) {
-    console.log(event);
-    console.log("confirm");
-    console.log(comment_id);
     document.getElementById(`deletingLoading${comment_id}`).showModal();
     deleteCommentByArticleId(comment_id)
       .then(() => {
@@ -26,7 +21,7 @@ export default function CommentDelete(props) {
       .catch(() => {
         document.getElementById(`deletingLoading${comment_id}`).close();
         document.getElementById(`commentDeleted${comment_id}`).close();
-        document.getElementById(`deleteCommentError${comment_id}`).close();
+        document.getElementById(`deleteCommentError${comment_id}`).showModal();
       });
   }
 
