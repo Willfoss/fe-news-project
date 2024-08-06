@@ -4,7 +4,7 @@ import { UserContext } from "../Context/UserContext";
 import { Link } from "react-router-dom";
 
 export default function PostComment(props) {
-  const { article_id, setOptimisticPostedComment, setOptimisticCommentCount } = props;
+  const { article_id, setTemporaryPostedComment, setOptimisticCommentCount } = props;
   const { loggedInUser } = useContext(UserContext);
   const [commentTextInput, setCommentTextInput] = useState("");
 
@@ -16,20 +16,23 @@ export default function PostComment(props) {
     event.preventDefault();
     if (loggedInUser.username === "") {
       logInModal.showModal();
-    } else
+    } else {
+      setOptimisticCommentCount((currentValue) => {
+        return currentValue + 1;
+      });
       postCommentByArticleId(article_id, commentTextInput, loggedInUser.username)
         .then((postedComment) => {
           setCommentTextInput("");
-          setOptimisticPostedComment(postedComment.comment);
-          setOptimisticCommentCount((currentValue) => {
-            return currentValue + 1;
-          });
+          setTemporaryPostedComment(postedComment.comment);
         })
         .catch(() => {
-          setOptimisticPostedComment({});
-          setOptimisticCommentCount(0);
+          setTemporaryPostedComment({});
+          setOptimisticCommentCount((currentValue) => {
+            return currentValue - 1;
+          });
           postingErrorModal.showModal();
         });
+    }
   }
 
   return (

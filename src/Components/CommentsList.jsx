@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { getCommentsByArticleId } from "../api";
 
 import CommentVote from "./CommentVote";
 import Loading from "./Loading";
 import PostComment from "./PostComment";
+import { UserContext } from "../Context/UserContext";
 
 export default function CommentsList(props) {
   const { article_id, setOptimisticCommentCount } = props;
 
+  const { loggedInUser } = useContext(UserContext);
+
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [commentsList, setCommentsList] = useState([]);
-  const [optimisticPostedComment, setOptimisticPostedComment] = useState({});
+  const [temporaryPostedComment, setTemporaryPostedComment] = useState({});
 
   useEffect(() => {
     setIsLoading(true);
@@ -39,17 +42,17 @@ export default function CommentsList(props) {
     <div className="flex flex-col justify-center items-center">
       <PostComment
         article_id={article_id}
-        setOptimisticPostedComment={setOptimisticPostedComment}
+        setTemporaryPostedComment={setTemporaryPostedComment}
         setOptimisticCommentCount={setOptimisticCommentCount}
       />
-      {!optimisticPostedComment.author ? (
+      {!temporaryPostedComment.author ? (
         ""
       ) : (
-        <div className=" w-[400px] border-4 border-blue-300 shadow-md p-2 mt-3 mb-3" key={optimisticPostedComment.comment_id}>
-          <p>{optimisticPostedComment.author}</p>
-          <p>Posted on: {optimisticPostedComment.created_at.slice(0, 10)}</p>
-          <p>{optimisticPostedComment.body}</p>
-          <CommentVote comment={optimisticPostedComment} />
+        <div className=" w-[400px] border-4 border-blue-300 shadow-md p-2 mt-3 mb-3" key={temporaryPostedComment.comment_id}>
+          <p>{temporaryPostedComment.author}</p>
+          <p>Posted on: {temporaryPostedComment.created_at.slice(0, 10)}</p>
+          <p>{temporaryPostedComment.body}</p>
+          <CommentVote comment={temporaryPostedComment} />
         </div>
       )}
       <ul className="max-w-[400px] flex-col justify-center items-center ">
