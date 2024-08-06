@@ -13,6 +13,7 @@ export default function SingleArticle() {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [date, setDate] = useState("");
+  const [optimisticCommentCount, setOptimisticCommentCount] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
@@ -39,7 +40,7 @@ export default function SingleArticle() {
 
   return (
     <div className="single-article-container flex flex-col justify-center items-center">
-      <li className="card bg-base-100 w-96 shadow-xl p-4 m-10">
+      <li className="card bg-base-100 w-96 shadow-xl p-4 m-2">
         <p>by: {singleArticle.author}</p>
         <h2 className="card-title">{singleArticle.title}</h2>
         <figure>
@@ -49,11 +50,12 @@ export default function SingleArticle() {
         <p>{singleArticle.body}</p>
         <div className="card-body flex-row justify-startitems-center">
           <ArticleVotes className="card-body flex-row justify-start items-center" article={singleArticle} />
-          <p className="flex justify-end">{singleArticle.comment_count}</p>
+          <p className="flex justify-end">{singleArticle.comment_count + optimisticCommentCount}</p>
           <MessageCircle />
         </div>
       </li>
-      <CommentsList article_id={article_id} key={article_id} />
+
+      <CommentsList article_id={article_id} key={article_id} setOptimisticCommentCount={setOptimisticCommentCount} />
     </div>
   );
 }

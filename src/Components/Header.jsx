@@ -3,13 +3,19 @@ import { Moon, Sun, Newspaper } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import user from "../assets/user.png";
 import { ThemeContext } from "../Context/ThemeContext";
+import { UserContext } from "../Context/UserContext";
 
 export default function Header() {
   let navigate = useNavigate();
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
   const handleHeaderClick = () => {
     navigate("/");
+  };
+
+  const handleSignOutClick = () => {
+    setLoggedInUser({ username: "" });
   };
 
   return (
@@ -22,7 +28,9 @@ export default function Header() {
 
         <div className=" flex justify-center items-center">
           <ul className=" h-[40px] flex items-center justify-evenly justify-end dark:text-gray-300 ">
-            <Link className="px-3">Articles</Link>
+            <Link to="/" className="px-3">
+              Articles
+            </Link>
             <Link className="px-3">Post</Link>
           </ul>
           {theme === "light" ? (
@@ -36,7 +44,40 @@ export default function Header() {
               onClick={toggleTheme}
             ></Moon>
           )}
-          <img className="min-w-[30px] w-[30px]  rounded-full hover:outline hover:outline-orange-400 " src={user}></img>
+          {loggedInUser.username === "" ? (
+            <div className="dropdown dropdown-end ">
+              <img
+                tabIndex={0}
+                role="button"
+                className="min-w-[30px] w-[30px]  rounded-full hover:outline hover:outline-orange-400 "
+                src={user}
+              ></img>
+              <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
+                <li>
+                  <Link to="/login">Login</Link>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className="dropdown dropdown-end ">
+              <img
+                tabIndex={0}
+                role="button"
+                className="  min-h-[30px] h-[30px] min-w-[30px] w-[30px] object-cover rounded-full hover:outline hover:outline-orange-400 rounded-full "
+                src={loggedInUser.avatar_url}
+              ></img>
+
+              <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box z-[1] mt-4 w-52 p-2 shadow">
+                <li>
+                  <p className="pointer-events-none focus:bg-white ml-0 p-0">Logged in as {loggedInUser.username}</p>
+                  <Link to="/user">User Profile</Link>
+                  <Link onClick={handleSignOutClick} to="/">
+                    Sign Out
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -31,3 +31,9 @@ export function patchArticleByarticleId(article_id, votes) {
     return data;
   });
 }
+
+export function postCommentByArticleId(article_id, body, username) {
+  return ncNewsApi.post(`/articles/${article_id}/comments`, { body: body, username: username }).then(({ data }) => {
+    return data;
+  });
+}
