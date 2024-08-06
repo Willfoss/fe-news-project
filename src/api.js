@@ -39,7 +39,6 @@ export function postCommentByArticleId(article_id, body, username) {
 }
 
 export function deleteCommentByArticleId(comment_id) {
-  console.log(comment_id);
   return ncNewsApi.delete(`/comments/${comment_id}`).then(({ data }) => {
     return data;
   });

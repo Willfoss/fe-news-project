@@ -8,15 +8,10 @@ export default function CommentDelete(props) {
   const { comment_id } = props;
 
   function handleDeleteClick(event) {
-    console.log(event);
-    console.log(comment_id);
     document.getElementById(`confirmDeleteModal${comment_id}`).showModal();
   }
 
   function handleConfirmDeleteClick(event) {
-    console.log(event);
-    console.log("confirm");
-    console.log(comment_id);
     document.getElementById(`deletingLoading${comment_id}`).showModal();
     deleteCommentByArticleId(comment_id)
       .then(() => {

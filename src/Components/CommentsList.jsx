@@ -49,8 +49,11 @@ export default function CommentsList(props) {
       {!temporaryPostedComment.author ? (
         ""
       ) : (
-        <div className=" w-[400px] border-4 border-blue-300 shadow-md p-2 mt-3 mb-3" key={temporaryPostedComment.comment_id}>
-          <p>{temporaryPostedComment.author}</p>
+        <div className=" group w-[400px] border-4 border-blue-300 shadow-md p-2 mt-3 mb-3" key={temporaryPostedComment.comment_id}>
+          <div className="flex justify-between">
+            <p>{temporaryPostedComment.author}</p>
+            <CommentDelete comment_id={temporaryPostedComment.comment_id} />
+          </div>
           <p>Posted on: {temporaryPostedComment.created_at.slice(0, 10)}</p>
           <p>{temporaryPostedComment.body}</p>
           <CommentVote comment={temporaryPostedComment} />
@@ -62,7 +65,7 @@ export default function CommentsList(props) {
             <li className=" group shadow-md p-2 mt-3 mb-3" key={comment.comment_id}>
               <div className="flex justify-between">
                 <p>{comment.author}</p>
-                <CommentDelete comment_id={comment.comment_id} />
+                {loggedInUser.username === comment.author ? <CommentDelete comment_id={comment.comment_id} /> : <p></p>}
               </div>
 
               <p>Posted on: {comment.created_at.slice(0, 10)}</p>
