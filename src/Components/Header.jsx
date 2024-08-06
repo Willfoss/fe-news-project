@@ -63,7 +63,7 @@ export default function Header() {
               <img
                 tabIndex={0}
                 role="button"
-                className="  min-h-[30px] h-[30px] min-w-[30px] w-[30px] object-cover rounded-full hover:outline hover:outline-orange-400 rounded-full "
+                className="  dark:bg-white min-h-[30px] h-[30px] min-w-[30px] w-[30px] object-cover rounded-full hover:outline hover:outline-orange-400 rounded-full "
                 src={loggedInUser.avatar_url}
               ></img>
 
