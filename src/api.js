@@ -4,8 +4,13 @@ const ncNewsApi = axios.create({
   baseURL: "https://be-news-project-p4dz.onrender.com/api",
 });
 
-export function getArticles() {
-  return ncNewsApi.get("/articles");
+export function getArticles(topic) {
+  const queries = {
+    params: {
+      topic: topic,
+    },
+  };
+  return ncNewsApi.get("/articles", queries);
 }
 
 export function getArticleById(article_id) {
@@ -40,6 +45,12 @@ export function postCommentByArticleId(article_id, body, username) {
 
 export function deleteCommentByArticleId(comment_id) {
   return ncNewsApi.delete(`/comments/${comment_id}`).then(({ data }) => {
+    return data;
+  });
+}
+
+export function getTopics() {
+  return ncNewsApi.get(`/topics`).then(({ data }) => {
     return data;
   });
 }
