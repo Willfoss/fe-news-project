@@ -62,7 +62,7 @@ export default function CommentsList(props) {
             <li className=" group shadow-md p-2 mt-3 mb-3" key={comment.comment_id}>
               <div className="flex justify-between">
                 <p>{comment.author}</p>
-                <CommentDelete comment_id={comment.comment_id} />
+                <CommentDelete comment_id={comment.comment_id} setOptimisticCommentCount={setOptimisticCommentCount} />
               </div>
 
               <p>Posted on: {comment.created_at.slice(0, 10)}</p>
