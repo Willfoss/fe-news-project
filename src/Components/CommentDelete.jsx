@@ -15,12 +15,13 @@ export default function CommentDelete(props) {
     document.getElementById(`deletingLoading${comment_id}`).showModal();
     deleteCommentByArticleId(comment_id)
       .then(() => {
+        console.log("in the then block");
         document.getElementById(`deletingLoading${comment_id}`).close();
         document.getElementById(`commentDeleted${comment_id}`).showModal();
       })
       .catch(() => {
+        console.log("in the error block");
         document.getElementById(`deletingLoading${comment_id}`).close();
-        document.getElementById(`commentDeleted${comment_id}`).close();
         document.getElementById(`deleteCommentError${comment_id}`).showModal();
       });
   }
@@ -69,8 +70,8 @@ export default function CommentDelete(props) {
       </dialog>
       <dialog id={`deleteCommentError${comment_id}`} className="modal">
         <div className="modal-box">
-          <h3 className="text-lg font-bold">Successfully removed!</h3>
-          <p className="py-4">Your comment has been successfully removed</p>
+          <h3 className="text-lg font-bold">Whoops something went wrong</h3>
+          <p className="py-4">Failed to delete your comment. Please try again!</p>
           <div className="modal-action flex flex-row items-center justify-evenly ">
             <form method="dialog">
               <button className="btn mf-3">close</button>

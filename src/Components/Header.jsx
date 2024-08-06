@@ -28,7 +28,7 @@ export default function Header() {
 
         <div className=" flex justify-center items-center">
           <ul className=" h-[40px] flex items-center justify-evenly justify-end dark:text-gray-300 ">
-            <Link to="/" className="px-3">
+            <Link to="/articles" className="px-3">
               Articles
             </Link>
             <Link className="px-3">Post</Link>
