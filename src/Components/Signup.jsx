@@ -12,10 +12,14 @@ export default function Signup() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [customError, setcustomError] = useState(false);
 
   let navigate = useNavigate();
 
   function handleUsernameChange(event) {
+    if (userAvatarInput) {
+      setcustomError(false);
+    }
     setUsernameInput(event.target.value);
   }
 
@@ -24,11 +28,18 @@ export default function Signup() {
   }
 
   function handleUserAvatarChange(event) {
+    if (usernameInput) {
+      setcustomError(false);
+    }
     setUserAvatarInput(event.target.value);
   }
 
   function handleUserCreation(event) {
     event.preventDefault();
+    if (!usernameInput || !userAvatarInput) {
+      setcustomError(true);
+      return;
+    }
     setIsLoading(true);
     postUser(usernameInput, nameInput, userAvatarInput)
       .then((user) => {
@@ -46,7 +57,7 @@ export default function Signup() {
   if (isError) return <Error />;
 
   return (
-    <form id="login-container" className="flex flex-col self-start mt-20 justify-start item start">
+    <form onSubmit={handleUserCreation} id="login-container" className="flex flex-col self-start mt-20 justify-start item start">
       <label className="flex flex-col justify-center m-2">
         Enter a username:
         <input
@@ -55,6 +66,7 @@ export default function Signup() {
           onChange={handleUsernameChange}
           value={usernameInput}
           className="input input-bordered w-full max-w-xs"
+          minLength={5}
           required
         />
       </label>
@@ -70,12 +82,16 @@ export default function Signup() {
           onChange={handleUserAvatarChange}
           value={userAvatarInput}
           className="input input-bordered w-full max-w-xs"
+          minLength={5}
           required
         />
       </label>
-      <button className="btn bg-white mt-20" onClick={handleUserCreation}>
-        Sign up!
-      </button>
+      {customError ? <p className="text-red-500 ">*Username and avatar URL are required</p> : <p></p>}
+      <button className="btn bg-white mt-20">Sign up!</button>
+
+      <Link to="/login" className="btn bg-white mt-2">
+        Back to login
+      </Link>
     </form>
   );
 }
