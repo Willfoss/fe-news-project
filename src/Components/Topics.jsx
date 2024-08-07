@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { getTopics } from "../api";
 import Loading from "./Loading";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export default function Topics(props) {
-  let navigate = useNavigate();
-  const { setTopic } = props;
+  const { setTopic, sortBy, order } = props;
   const [topicsList, setTopicsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  let [searchParams, setSearchParams] = useSearchParams();
 
   function handleTopicSelectorClick(event) {
-    if (event.target.outerText === "All Items") {
+    event.preventDefault();
+    if (event.target.outerText === "All Topics") {
       setTopic("");
-      navigate(`/articles`, { replace: true });
+      setSearchParams({ sort_by: sortBy, order: order });
     } else {
       setTopic(event.target.outerText);
-      navigate(`/articles?topic=${event.target.outerText}`, { replace: true });
+      setSearchParams({ topic: event.target.outerText, sort_by: sortBy, order: order });
     }
   }
 
@@ -33,7 +34,7 @@ export default function Topics(props) {
       });
   }, []);
 
-  //hmm do i want these as loading will appear twice on the screen?
+  //hmm do i want these as loading will appear twice on the screen with the article loading?
   if (isLoading) return <Loading />;
   if (isError) return <Error />;
 
@@ -41,12 +42,12 @@ export default function Topics(props) {
     <div className="flex flex-col justify-center items-center mt-10">
       <h2>Topics</h2>
       <ul>
-        <li className="btn mr-3" onClick={handleTopicSelectorClick} key="all-items">
-          All Items
+        <li className="btn mr-3 bg-white" onClick={handleTopicSelectorClick} key="all-items">
+          All Topics
         </li>
         {topicsList.map((topic) => {
           return (
-            <li className="btn mr-3" onClick={handleTopicSelectorClick} key={topic.slug}>
+            <li className="btn mr-3 bg-white" onClick={handleTopicSelectorClick} key={topic.slug}>
               {topic.slug}
             </li>
           );
