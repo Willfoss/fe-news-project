@@ -31,15 +31,15 @@ export default function User() {
 
   return (
     <section className=" flex flex-col justify-start items-center">
-      <h2 className="mt-10">My Profile</h2>
+      <h2 className="mt-10 dark:text-gray-300">My Profile</h2>
       <div id="user-profile-container" className="flex flex-col justify-center w-80 items-center card  p-4 m-2">
         <img className="rounded-xl h-60 object:fi border-2 border-black " src={loggedInUser.avatar_url}></img>
         <div id="username-container" className="flex">
-          <label className="mr-4">Username:</label>
-          <p>{loggedInUser.username}</p>
+          <label className="mr-4 dark:text-gray-300">Username:</label>
+          <p className="dark:text-gray-300">{loggedInUser.username}</p>
         </div>
       </div>
-      <h2 className="mt-10">My Articles</h2>
+      <h2 className="mt-10 dark:text-gray-300">My Articles</h2>
       <ul></ul>
       <ul id="articleList-container" className="flex flex-col justify-center">
         {userArticleList.map((article) => {
