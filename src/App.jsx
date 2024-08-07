@@ -15,15 +15,15 @@ function App() {
   return (
     <div className="body flex flex-col flex-wrap justify-center items-center min-h-screen">
       <Header />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/articles" element={<Home />} />
-        <Route path="/articles/:article_id" element={<SingleArticle />} />
-        <Route path="/login" element={loggedInUser.username === "" ? <Login /> : <Navigate to="/" />} />
-        <Route path="/user" element={loggedInUser.username != "" ? <User /> : <Navigate to="/login" />} />
-      </Routes>
-
+      <main className="flex flex-1 bg-gray-100 w-screen justify-center items-center">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/articles" element={<Home />} />
+          <Route path="/articles/:article_id" element={<SingleArticle />} />
+          <Route path="/login" element={loggedInUser.username === "" ? <Login /> : <Navigate to="/" />} />
+          <Route path="/user" element={loggedInUser.username != "" ? <User /> : <Navigate to="/login" />} />
+        </Routes>
+      </main>
       <Footer />
     </div>
   );
