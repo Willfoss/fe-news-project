@@ -40,7 +40,7 @@ export default function Login() {
   if (isError) return <Error />;
 
   return (
-    <section id="login-container" className="flex flex-col self-start mt-20 justify-start item start">
+    <section id="login-container" className="flex flex-col self-start mt-20 justify-start item start border-2 rounded p-5">
       <label className="flex flex-col justify-center" htmlFor="username-input">
         Select a Username:
         <select value={selectedUser} className="select select-bordered w-60 max-w-xs" onChange={handleUserSelect}>

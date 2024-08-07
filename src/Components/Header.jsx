@@ -31,7 +31,11 @@ export default function Header() {
             <Link to="/articles" className="px-3">
               Articles
             </Link>
-            <Link className="px-3">Post</Link>
+            {loggedInUser.username !== "" && (
+              <Link to="postarticle" className="px-3">
+                Post an Article
+              </Link>
+            )}
           </ul>
           {theme === "light" ? (
             <Sun

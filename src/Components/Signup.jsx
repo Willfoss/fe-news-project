@@ -57,7 +57,7 @@ export default function Signup() {
   if (isError) return <Error />;
 
   return (
-    <form onSubmit={handleUserCreation} id="login-container" className="flex flex-col self-start mt-20 justify-start item start">
+    <form onSubmit={handleUserCreation} id="login-container" className="flex flex-col self-start mt-20 justify-start border-2 rounded p-5">
       <label className="flex flex-col justify-center m-2">
         Enter a username:
         <input
