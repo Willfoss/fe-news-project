@@ -39,7 +39,7 @@ export default function User() {
           <p>{loggedInUser.username}</p>
         </div>
       </div>
-      <h2 className="mt-10">My articles</h2>
+      <h2 className="mt-10">My Articles</h2>
       <ul></ul>
       <ul id="articleList-container" className="flex flex-col justify-center">
         {userArticleList.map((article) => {
