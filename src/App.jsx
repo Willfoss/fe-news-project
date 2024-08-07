@@ -8,6 +8,7 @@ import SingleArticle from "./Components/SingleArticle";
 import { UserContext } from "./Context/UserContext";
 import Login from "./Components/Login";
 import User from "./Components/User";
+import Signup from "./Components/Signup";
 
 function App() {
   const { loggedInUser } = useContext(UserContext);
@@ -22,6 +23,7 @@ function App() {
           <Route path="/articles/:article_id" element={<SingleArticle />} />
           <Route path="/login" element={loggedInUser.username === "" ? <Login /> : <Navigate to="/" />} />
           <Route path="/user" element={loggedInUser.username != "" ? <User /> : <Navigate to="/login" />} />
+          <Route path="/signup" element={loggedInUser.username === "" ? <Signup /> : <Navigate to="/" />} />
         </Routes>
       </main>
       <Footer />
