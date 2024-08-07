@@ -74,3 +74,12 @@ export function postUser(username, name, url) {
     return data;
   });
 }
+
+export function getUserArticles(author) {
+  const queries = {
+    params: {
+      author: author,
+    },
+  };
+  return ncNewsApi.get("/articles", queries);
+}
