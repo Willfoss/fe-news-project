@@ -56,3 +56,21 @@ export function getTopics() {
     return data;
   });
 }
+
+export function getUsers() {
+  return ncNewsApi.get(`/users`).then(({ data }) => {
+    return data;
+  });
+}
+
+export function getUserByUsername(username) {
+  return ncNewsApi.get(`/users/${username}`).then(({ data }) => {
+    return data;
+  });
+}
+
+export function postUser(username, name, url) {
+  return ncNewsApi.post(`/users`, { username: username, name: name, avatar_url: url }).then(({ data }) => {
+    return data;
+  });
+}
