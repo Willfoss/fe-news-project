@@ -79,7 +79,14 @@ export function getUserArticles(author) {
   const queries = {
     params: {
       author: author,
+      order: "DESC",
     },
   };
   return ncNewsApi.get("/articles", queries);
+}
+
+export function postArticle(author, title, body, url, topic) {
+  return ncNewsApi.post(`/articles`, { author: author, title: title, body: body, url: url, topic: topic }).then(({ data }) => {
+    return data;
+  });
 }

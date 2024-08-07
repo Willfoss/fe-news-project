@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Topics from "./Topics";
 import SortBy from "./SortBy";
 import Home from "./Home";
+import { UserContext } from "../Context/UserContext";
 
 export default function HomeFilterProvider() {
+  const { loggedInUser } = useContext(UserContext);
   const [topic, setTopic] = useState("");
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("DESC");
