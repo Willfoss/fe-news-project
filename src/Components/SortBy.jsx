@@ -4,7 +4,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 export default function sortBy(props) {
   const { sortBy, setSortBy, order, setOrder, topic } = props;
   let [searchParams, setSearchParams] = useSearchParams();
-  let navigate = useNavigate();
 
   function handleSortChange(event) {
     event.preventDefault();
@@ -28,7 +27,7 @@ export default function sortBy(props) {
 
   return (
     <div className="flex p-2">
-      <select onChange={handleSortChange} className="select select-bordered w-full max-w-xs" value={sortBy}>
+      <select onChange={handleSortChange} className="select select-bordered w-full max-w-xs min-w-56" value={sortBy}>
         <option className="font-bold text-black" disabled>
           Sort By
         </option>
@@ -38,7 +37,7 @@ export default function sortBy(props) {
         <option value="comment_count">Number of Comments</option>
         <option value="title">Title</option>
       </select>
-      <select onChange={handleOrderChange} className="select select-bordered w-full max-w-xs" value={order}>
+      <select onChange={handleOrderChange} className="select select-bordered w-full max-w-xs min-w-56" value={order}>
         <option className="font-bold text-black" disabled>
           Order
         </option>
