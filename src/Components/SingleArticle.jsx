@@ -40,18 +40,18 @@ export default function SingleArticle() {
 
   return (
     <div className="single-article-container flex flex-col justify-center items-center">
-      <li className="card bg-base-100 w-96 shadow-xl p-4 m-2">
-        <p>by: {singleArticle.author}</p>
-        <h2 className="card-title">{singleArticle.title}</h2>
+      <li className="card bg-base-100 w-96 shadow-xl p-4 m-2 dark:bg-gray-800">
+        <p className="dark:text-gray-300">by: {singleArticle.author}</p>
+        <h2 className="card-title dark:text-gray-300">{singleArticle.title}</h2>
         <figure>
           <img className="rounded-md" src={singleArticle.article_img_url} alt={`image for article ${singleArticle.title}`} />
         </figure>
-        <p className="text-small">Posted on {date}</p>
-        <p>{singleArticle.body}</p>
+        <p className="text-small dark:text-gray-300">Posted on {date}</p>
+        <p className="dark:text-gray-300">{singleArticle.body}</p>
         <div className="card-body flex-row justify-startitems-center">
           <ArticleVotes className="card-body flex-row justify-start items-center" article={singleArticle} />
-          <p className="flex justify-end">{singleArticle.comment_count + optimisticCommentCount}</p>
-          <MessageCircle />
+          <p className="flex justify-end dark:text-gray-300 ">{singleArticle.comment_count + optimisticCommentCount}</p>
+          <MessageCircle className="dark:text-gray-300" />
         </div>
       </li>
 

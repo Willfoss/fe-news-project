@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="body flex flex-col flex-wrap justify-center items-center min-h-screen">
       <Header />
-      <main className="flex flex-1 bg-gray-100 w-screen justify-center items-start">
+      <main className="flex flex-1 bg-gray-100 w-screen justify-center items-start dark:bg-gray-900">
         <Routes>
           <Route path="/" element={<HomeFilterProvider />} />
           <Route path="/articles" element={<HomeFilterProvider />} />

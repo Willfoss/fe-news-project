@@ -69,57 +69,59 @@ export default function PostArticle() {
   }
 
   return isPostingError ? (
-    <h2>Whoops something went wrong while tryin to post your article! please refresh the page and try again!</h2>
+    <h2 className="dark:text-gray-300">Whoops something went wrong while tryin to post your article! please refresh the page and try again!</h2>
   ) : (
     <div className="flex justify-center items-center w-screen">
-      <form onSubmit={handleArticlePost} id="login-container" className="flex flex-col border-2 rounded p-5 mt-10 mb-10">
-        <label className="flex flex-col justify-center" htmlFor="username-input">
+      <form onSubmit={handleArticlePost} id="login-container" className="flex flex-col border-2 rounded p-5 mt-10 mb-10 dark:border-gray-500">
+        <label className="flex flex-col justify-center dark:text-gray-300" htmlFor="username-input">
           Select a Topic:
         </label>
-        <select onChange={handleTopicChange} value={topicInput} className="select select-bordered max-w-xs">
+        <select onChange={handleTopicChange} value={topicInput} className="select select-bordered max-w-xs dark:bg-gray-800 dark:text-gray-300">
           <option></option>
           {topicsList.map((topic) => {
             return (
-              <option value={topic.slug} className="btn mr-3 bg-white" key={topic.slug}>
+              <option value={topic.slug} className="btn mr-3 bg-white dark:bg-gray-800 dark:text-gray-300" key={topic.slug}>
                 {topic.slug}
               </option>
             );
           })}
         </select>
-        <label className="flex flex-col justify-center m-2">
+        <label className="flex flex-col justify-center m-2 dark:text-gray-300">
           Title:
           <input
             type="text"
             placeholder="Type here"
             onChange={handleTitleInputChange}
             value={titleInput}
-            className="input input-bordered  max-w-lg"
+            className="input input-bordered  max-w-lg dark:bg-gray-800 dark:text-gray-300"
             minLength={2}
             required
           />
         </label>
-        <label className="flex flex-col justify-center m-2">
+        <label className="flex flex-col justify-center m-2 dark:text-gray-300">
           Enter an image URL:
           <input
             type="url"
             placeholder="Type here"
             onChange={handleUrlInputChange}
             value={urlInput}
-            className="input input-bordered w-full max-w-xs"
+            className="input input-bordered w-full max-w-xs dark:bg-gray-800 dark:text-gray-300"
             minLength={5}
           />
         </label>
-        <label className="flex flex-col justify-center m-2">
+        <label className="flex flex-col justify-center m-2 dark:text-gray-300 dark:bg">
           Body:
           <textarea
-            className="textarea textarea-bordered  min-h-72 max-w-xs"
+            className="textarea textarea-bordered  min-h-72 max-w-xs dark:bg-gray-800 dark:text-gray-300"
             placeholder="Type here"
             value={bodyInput}
             onChange={handleBodyInputChange}
           ></textarea>
         </label>
         {isCustomError && <p className="text-red-500">*Topic and Title are required</p>}
-        <button className="btn bg-white">Post</button>
+        <button className="btn bg-white dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500">
+          Post
+        </button>
       </form>
     </div>
   );

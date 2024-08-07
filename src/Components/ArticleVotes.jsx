@@ -57,9 +57,19 @@ export default function ArticleVotes(props) {
   }
   return (
     <div className="card-body flex-row justify-startitems-center p-0">
-      <SquareArrowUp onClick={incrementVote} className={articlePositiveVoteNumber === 1 ? `text-green-500` : `hover:text-green-500`}></SquareArrowUp>
-      <h3>{article.votes + optimisticVotes}</h3>
-      <SquareArrowDown onClick={decrementVote} className={articleNegativeVoteNumber === 1 ? `text-red-500` : `hover:text-red-500`}></SquareArrowDown>
+      <SquareArrowUp
+        onClick={incrementVote}
+        className={`dark:text-gray-300 ${
+          articlePositiveVoteNumber === 1 ? "text-green-500 dark:text-green-500" : "hover:text-green-500 dark:hover:text-green-500"
+        }`}
+      ></SquareArrowUp>
+      <h3 className=" dark:text-gray-300">{article.votes + optimisticVotes}</h3>
+      <SquareArrowDown
+        onClick={decrementVote}
+        className={`dark:text-gray-300 ${
+          articleNegativeVoteNumber === 1 ? "text-red-500 dark:text-red-500" : "hover:text-red-500 dark:hover:text-red-500"
+        }`}
+      ></SquareArrowDown>
     </div>
   );
 }

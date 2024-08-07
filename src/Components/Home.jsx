@@ -34,8 +34,8 @@ export default function Home(props) {
   }
 
   return (
-    <section id="articles-container" className="w-full bg-gray-100 flex flex-col items-center justify-center">
-      <ul id="articleList-container" className="flex flex-col justify-center">
+    <section id="articles-container" className="w-full bg-gray-100 flex flex-col items-center justify-center mb-10 dark:bg-gray-900">
+      <ul id="articleList-container" className="flex flex-col justify-center dark:bg-gray-900">
         {articleList.map((article) => {
           return <ArticleCard article={article} key={article.article_id} />;
         })}

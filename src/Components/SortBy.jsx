@@ -27,8 +27,12 @@ export default function sortBy(props) {
 
   return (
     <div className="flex p-2">
-      <select onChange={handleSortChange} className="select select-bordered w-full max-w-xs min-w-56" value={sortBy}>
-        <option className="font-bold text-black" disabled>
+      <select
+        onChange={handleSortChange}
+        className="select select-bordered w-full max-w-xs min-w-56 dark:bg-gray-800 dark:text-gray-300"
+        value={sortBy}
+      >
+        <option className="font-bold text-black dark:text-gray-200" disabled>
           Sort By
         </option>
         <option value="author">Author</option>
@@ -37,8 +41,12 @@ export default function sortBy(props) {
         <option value="comment_count">Number of Comments</option>
         <option value="title">Title</option>
       </select>
-      <select onChange={handleOrderChange} className="select select-bordered w-full max-w-xs min-w-56" value={order}>
-        <option className="font-bold text-black" disabled>
+      <select
+        onChange={handleOrderChange}
+        className="select select-bordered w-full max-w-xs min-w-56 dark:bg-gray-800  dark:text-gray-300"
+        value={order}
+      >
+        <option className="font-bold text-black dark:text-gray-200" disabled>
           Order
         </option>
         <option value="ASC">Ascending</option>
