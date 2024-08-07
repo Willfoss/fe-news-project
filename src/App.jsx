@@ -9,6 +9,7 @@ import { UserContext } from "./Context/UserContext";
 import Login from "./Components/Login";
 import User from "./Components/User";
 import Signup from "./Components/Signup";
+import HomeFilterProvider from "./Components/HomeFilterProvider";
 
 function App() {
   const { loggedInUser } = useContext(UserContext);
@@ -16,10 +17,10 @@ function App() {
   return (
     <div className="body flex flex-col flex-wrap justify-center items-center min-h-screen">
       <Header />
-      <main className="flex flex-1 bg-gray-100 w-screen justify-center items-center">
+      <main className="flex flex-1 bg-gray-100 w-screen justify-center items-start">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/articles" element={<Home />} />
+          <Route path="/" element={<HomeFilterProvider />} />
+          <Route path="/articles" element={<HomeFilterProvider />} />
           <Route path="/articles/:article_id" element={<SingleArticle />} />
           <Route path="/login" element={loggedInUser.username === "" ? <Login /> : <Navigate to="/" />} />
           <Route path="/user" element={loggedInUser.username != "" ? <User /> : <Navigate to="/login" />} />

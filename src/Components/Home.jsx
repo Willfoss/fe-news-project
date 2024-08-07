@@ -6,13 +6,11 @@ import ArticleCard from "./ArticleCard";
 import Topics from "./Topics";
 import SortBy from "./SortBy";
 
-export default function Home() {
+export default function Home(props) {
+  const { order, sortBy, topic } = props;
   const [articleList, setArticleList] = useState([]);
   const [isLoading, setIsloading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [topic, setTopic] = useState("");
-  const [sortBy, setSortBy] = useState("created_at");
-  const [order, setOrder] = useState("DESC");
 
   useEffect(() => {
     setIsloading(true);
@@ -37,10 +35,6 @@ export default function Home() {
 
   return (
     <section id="articles-container" className="w-full bg-gray-100 flex flex-col items-center justify-center">
-      <div>
-        <Topics setTopic={setTopic} sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder} />
-        <SortBy sortBy={sortBy} setSortBy={setSortBy} order={order} setOrder={setOrder} topic={topic} />
-      </div>
       <ul id="articleList-container" className="flex flex-col justify-center">
         {articleList.map((article) => {
           return <ArticleCard article={article} key={article.article_id} />;
