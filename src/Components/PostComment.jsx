@@ -40,13 +40,15 @@ export default function PostComment(props) {
       <form onSubmit={handleCommentSubmit} className="flex flex-col justify-center items-center shadow-md p-2 m-2">
         <label>
           <textarea
-            className="textarea textarea-bordered w-[380px] h-40"
+            className="textarea textarea-bordered w-[380px] h-40 dark:bg-gray-800 dark:text-gray-300"
             placeholder="comment"
             onChange={handleCommentChange}
             value={commentTextInput}
           ></textarea>
         </label>
-        <button className="btn bg-white">Post Comment</button>
+        <button className="btn bg-white dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500">
+          Post Comment
+        </button>
       </form>
       <dialog id="logInModal" className="modal">
         <div className="modal-box">

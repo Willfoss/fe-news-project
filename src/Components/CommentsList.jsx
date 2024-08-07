@@ -51,25 +51,25 @@ export default function CommentsList(props) {
       ) : (
         <div className=" group w-[400px] border-4 border-blue-300 shadow-md p-2 mt-3 mb-3" key={temporaryPostedComment.comment_id}>
           <div className="flex justify-between">
-            <p>{temporaryPostedComment.author}</p>
+            <p className="dark:text-gray-300">{temporaryPostedComment.author}</p>
             <CommentDelete comment_id={temporaryPostedComment.comment_id} />
           </div>
-          <p>Posted on: {temporaryPostedComment.created_at.slice(0, 10)}</p>
-          <p>{temporaryPostedComment.body}</p>
+          <p className="dark:text-gray-300">Posted on: {temporaryPostedComment.created_at.slice(0, 10)}</p>
+          <p className="dark:text-gray-300">{temporaryPostedComment.body}</p>
           <CommentVote comment={temporaryPostedComment} />
         </div>
       )}
       <ul className="max-w-[400px] w-[400px] flex-col justify-center items-center ">
         {commentsList.map((comment) => {
           return (
-            <li className=" group shadow-md p-2 mt-3 mb-3" key={comment.comment_id}>
+            <li className=" group shadow-md p-2 mt-3 mb-3 dark:border-2 dark:border-gray-500 rounded" key={comment.comment_id}>
               <div className="flex justify-between">
-                <p>{comment.author}</p>
+                <p className="dark:text-gray-300">{comment.author}</p>
                 {loggedInUser.username === comment.author ? <CommentDelete comment_id={comment.comment_id} /> : <p></p>}
               </div>
 
-              <p>Posted on: {comment.created_at.slice(0, 10)}</p>
-              <p>{comment.body}</p>
+              <p className="dark:text-gray-300">Posted on: {comment.created_at.slice(0, 10)}</p>
+              <p className="dark:text-gray-300">{comment.body}</p>
               <CommentVote comment={comment} />
             </li>
           );
