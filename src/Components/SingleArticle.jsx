@@ -55,7 +55,12 @@ export default function SingleArticle() {
         </div>
       </li>
 
-      <CommentsList article_id={article_id} key={article_id} setOptimisticCommentCount={setOptimisticCommentCount} />
+      <CommentsList
+        article_id={article_id}
+        commentCount={singleArticle.comment_count}
+        key={article_id}
+        setOptimisticCommentCount={setOptimisticCommentCount}
+      />
     </div>
   );
 }

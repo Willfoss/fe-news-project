@@ -8,7 +8,7 @@ export default function ArticleCard(props) {
   const { article } = props;
 
   return (
-    <li className="card bg-base-100 w-96 shadow-xl p-4 m-4 w-25 dark:bg-gray-800">
+    <li className="card self-stretch bg-base-100 shadow-xl p-4 m-4 dark:bg-gray-800">
       <Link to={`/articles/${article.article_id}`} article_id={article.article_id}>
         <p className="dark:text-gray-300">by: {article.author}</p>
         <h2 className="card-title dark:text-gray-300">{article.title}</h2>
