@@ -39,12 +39,12 @@ export default function Header() {
           </ul>
           {theme === "light" ? (
             <Sun
-              className="hover:text-yellow-700 min-w-[50px] w-[50px] hover: cursor-pointer sun dark:text-gray-300 px-3 mr-2"
+              className="hover:text-yellow-400 min-w-[50px] w-[50px] hover: cursor-pointer sun dark:text-gray-300 px-3 mr-2"
               onClick={toggleTheme}
             ></Sun>
           ) : (
             <Moon
-              className="dark:text-gray-300 dark:hover:text-yellow-700 min-w-[50px] w-[50px] hover: cursor-pointer moon  px-3 mr-2"
+              className="dark:text-gray-300 dark:hover:text-yellow-400 min-w-[50px] w-[50px] hover: cursor-pointer moon  px-3 mr-2"
               onClick={toggleTheme}
             ></Moon>
           )}

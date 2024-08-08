@@ -44,7 +44,7 @@ export default function PostComment(props) {
         <form onSubmit={handleCommentSubmit} className="flex  flex-col justify-center items-center shadow-md pt-2 mt-2">
           <label className="flex self-stretch flex-col">
             <textarea
-              className="textarea w-full textarea-bordered h-40 dark:bg-gray-800 dark:text-gray-300"
+              className="textarea w-full textarea-bordered h-40 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-400"
               placeholder="comment"
               onChange={handleCommentChange}
               value={commentTextInput}
