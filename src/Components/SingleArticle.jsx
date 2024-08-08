@@ -6,13 +6,14 @@ import Loading from "./Loading";
 import CommentsList from "./CommentsList";
 import ArticleVotes from "./ArticleVotes";
 import { UserContext } from "../Context/UserContext";
+import Error from "./Error";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
   const [singleArticleVote, setSingleArticleVote] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
   const [date, setDate] = useState("");
   const [optimisticCommentCount, setOptimisticCommentCount] = useState(0);
   const { loggedInUser } = useContext(UserContext);
@@ -26,8 +27,8 @@ export default function SingleArticle() {
         setSingleArticleVote(article.votes);
         setIsLoading(false);
       })
-      .catch(() => {
-        setIsError(true);
+      .catch((err) => {
+        setError(err);
         setIsLoading(false);
       });
   }, [article_id]);
@@ -36,8 +37,8 @@ export default function SingleArticle() {
     return <Loading />;
   }
 
-  if (isError) {
-    return <Error />;
+  if (error) {
+    return <Error error={error} />;
   }
 
   return (

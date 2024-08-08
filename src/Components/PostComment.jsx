@@ -2,12 +2,14 @@ import React, { useContext, useState } from "react";
 import { postCommentByArticleId } from "../api";
 import { UserContext } from "../Context/UserContext";
 import { Link } from "react-router-dom";
+import Error from "./Error";
 
 export default function PostComment(props) {
   const { article_id, setTemporaryPostedCommentList, setOptimisticCommentCount } = props;
   const { loggedInUser } = useContext(UserContext);
   const [commentTextInput, setCommentTextInput] = useState("");
   const [emptyCommentBox, setEmptyCommentBox] = useState(false);
+  const [error, setError] = useState();
 
   function handleCommentChange(event) {
     setCommentTextInput(event.target.value);
@@ -29,13 +31,18 @@ export default function PostComment(props) {
             return [...prevComments, postedComment.comment];
           });
         })
-        .catch(() => {
+        .catch((error) => {
           setOptimisticCommentCount((currentValue) => {
             return currentValue - 1;
           });
-          postingErrorModal.showModal();
+          console.log(error);
+          setError(error);
         });
     }
+  }
+
+  if (error) {
+    return <Error error={error} />;
   }
 
   return (

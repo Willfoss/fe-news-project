@@ -10,9 +10,7 @@ export default function Home(props) {
   const { order, sortBy, topic, articleList, setArticleList, page, setPage, limit, setLimit } = props;
 
   const [isLoading, setIsloading] = useState(true);
-  const [isError, setIsError] = useState(false);
-  const [previousPage, setPreviousPage] = useState(1);
-  const [filteredList, setFilteredList] = useState([]);
+  const [error, setError] = useState("");
   const [areMorePages, setAreMorePages] = useState(false);
 
   function handleLoadMoreArticles() {
@@ -37,14 +35,15 @@ export default function Home(props) {
         });
         setIsloading(false);
       })
-      .catch(() => {
-        setIsError(true);
+      .catch((error) => {
+        "hello from catch block";
+        setError(error);
         setIsloading(false);
       });
   }, [topic, sortBy, order, page, limit]);
 
-  if (isError) {
-    return <Error />;
+  if (error) {
+    return <Error error={error} />;
   }
 
   if (isLoading && page === 1) {

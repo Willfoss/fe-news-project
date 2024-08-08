@@ -69,7 +69,9 @@ export default function PostArticle() {
   }
 
   return isPostingError ? (
-    <h2 className="dark:text-gray-300">Whoops something went wrong while tryin to post your article! please refresh the page and try again!</h2>
+    <h2 className="flex justify-center items-center dark:text-gray-300 m-5">
+      Whoops something went wrong while tryin to post your article! please refresh the page and try again!
+    </h2>
   ) : (
     <div className="flex justify-center items-center w-screen">
       <form onSubmit={handleArticlePost} id="login-container" className="flex flex-col border-2 rounded p-5 mt-10 mb-10 dark:border-gray-500">
