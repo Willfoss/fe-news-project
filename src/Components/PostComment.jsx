@@ -35,7 +35,6 @@ export default function PostComment(props) {
           setOptimisticCommentCount((currentValue) => {
             return currentValue - 1;
           });
-          console.log(error);
           setError(error);
         });
     }
