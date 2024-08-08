@@ -4,7 +4,7 @@ import { UserContext } from "../Context/UserContext";
 import { Link } from "react-router-dom";
 
 export default function PostComment(props) {
-  const { article_id, setTemporaryPostedComment, setOptimisticCommentCount } = props;
+  const { article_id, setTemporaryPostedCommentList, setOptimisticCommentCount } = props;
   const { loggedInUser } = useContext(UserContext);
   const [commentTextInput, setCommentTextInput] = useState("");
   const [emptyCommentBox, setEmptyCommentBox] = useState(false);
@@ -25,10 +25,11 @@ export default function PostComment(props) {
       postCommentByArticleId(article_id, commentTextInput, loggedInUser.username)
         .then((postedComment) => {
           setCommentTextInput("");
-          setTemporaryPostedComment(postedComment.comment);
+          setTemporaryPostedCommentList((prevComments) => {
+            return [...prevComments, postedComment.comment];
+          });
         })
         .catch(() => {
-          setTemporaryPostedComment({});
           setOptimisticCommentCount((currentValue) => {
             return currentValue - 1;
           });
