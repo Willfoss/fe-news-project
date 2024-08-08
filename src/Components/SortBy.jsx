@@ -1,13 +1,16 @@
+import { stackTraceLimit } from "postcss/lib/css-syntax-error";
 import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function sortBy(props) {
-  const { sortBy, setSortBy, order, setOrder, topic } = props;
+  const { sortBy, setSortBy, order, setOrder, topic, setPage, articleList, setArticleList, setLimit } = props;
   let [searchParams, setSearchParams] = useSearchParams();
 
   function handleSortChange(event) {
     event.preventDefault();
     setSortBy(event.target.value);
+    setPage(1);
+    setArticleList([]);
     if (topic === "") {
       setSearchParams({ sort_by: event.target.value, order: order });
     } else {
@@ -18,6 +21,8 @@ export default function sortBy(props) {
   function handleOrderChange(event) {
     event.preventDefault();
     setOrder(event.target.value);
+    setPage(1);
+    setArticleList([]);
     if (topic === "") {
       setSearchParams({ sort_by: event.target.value, order: order });
     } else {

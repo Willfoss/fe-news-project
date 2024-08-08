@@ -9,29 +9,41 @@ import { UserContext } from "../Context/UserContext";
 import CommentDelete from "./CommentDelete";
 
 export default function CommentsList(props) {
-  const { article_id, setOptimisticCommentCount } = props;
-
+  const { article_id, commentCount, setOptimisticCommentCount } = props;
   const { loggedInUser } = useContext(UserContext);
 
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [commentsList, setCommentsList] = useState([]);
   const [temporaryPostedComment, setTemporaryPostedComment] = useState({});
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const [areMorePages, setAreMorePages] = useState(false);
+
+  function handleLoadMoreComments() {
+    setPage((prevPage) => prevPage + 1);
+  }
 
   useEffect(() => {
     setIsLoading(true);
-    getCommentsByArticleId(article_id)
+    getCommentsByArticleId(article_id, page)
       .then(({ comments }) => {
-        setCommentsList(comments);
+        setAreMorePages(true);
+        if (commentsList.length + limit >= commentCount) {
+          setAreMorePages(false);
+        }
+        setCommentsList((previousList) => {
+          return [...previousList, ...comments];
+        });
         setIsLoading(false);
       })
       .catch(() => {
         setIsError(true);
         setIsLoading(false);
       });
-  }, [article_id]);
+  }, [article_id, page]);
 
-  if (isLoading) {
+  if (isLoading && page === 1) {
     return <Loading />;
   }
 
@@ -75,6 +87,17 @@ export default function CommentsList(props) {
           );
         })}
       </ul>
+      {areMorePages ? (
+        <button
+          className="btn self-stretch max-w-50 m-2 mb-5 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-500"
+          onClick={handleLoadMoreComments}
+        >
+          Load More
+        </button>
+      ) : (
+        <h2 className="dark:text-gray-300 mb-5">You're up to date!</h2>
+      )}
+      {isLoading && page !== 1 && <Loading />}
     </div>
   );
 }

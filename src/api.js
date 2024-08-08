@@ -4,13 +4,14 @@ const ncNewsApi = axios.create({
   baseURL: "https://be-news-project-p4dz.onrender.com/api",
 });
 
-export function getArticles(topic, sortBy, order, page) {
+export function getArticles(topic, sortBy, order, page, limit) {
   const queries = {
     params: {
       topic: topic,
       sort_by: sortBy,
       order: order,
       page: page,
+      limit: limit,
     },
   };
   return ncNewsApi.get("/articles", queries);
@@ -22,8 +23,14 @@ export function getArticleById(article_id) {
   });
 }
 
-export function getCommentsByArticleId(article_id) {
-  return ncNewsApi.get(`/articles/${article_id}/comments`).then(({ data }) => {
+export function getCommentsByArticleId(article_id, page, limit) {
+  const queries = {
+    params: {
+      page: page,
+      limit: limit,
+    },
+  };
+  return ncNewsApi.get(`/articles/${article_id}/comments`, queries).then(({ data }) => {
     return data;
   });
 }
