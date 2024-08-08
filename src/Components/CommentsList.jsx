@@ -15,10 +15,12 @@ export default function CommentsList(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [commentsList, setCommentsList] = useState([]);
-  const [temporaryPostedComment, setTemporaryPostedComment] = useState({});
+  const [temporaryPostedCommentList, setTemporaryPostedCommentList] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [areMorePages, setAreMorePages] = useState(false);
+  const [isDeleteCustomError, setIsDeleteCustomError] = useState(false);
+  const [deletedCommentId, setDeletedCommentId] = useState(0);
 
   function handleLoadMoreComments() {
     setPage((prevPage) => prevPage + 1);
@@ -55,35 +57,83 @@ export default function CommentsList(props) {
     <div className="flex self-stretch flex-col justify-center items-center w-100 m-5">
       <PostComment
         article_id={article_id}
-        setTemporaryPostedComment={setTemporaryPostedComment}
+        setTemporaryPostedCommentList={setTemporaryPostedCommentList}
         setOptimisticCommentCount={setOptimisticCommentCount}
       />
-      {!temporaryPostedComment.author ? (
+      {setTemporaryPostedCommentList.length === 0 ? (
         ""
       ) : (
-        <div className=" group w-[400px] border-4 border-blue-300 shadow-md p-2 mt-3 mb-3" key={temporaryPostedComment.comment_id}>
-          <div className="flex justify-between">
-            <p className="dark:text-gray-300">{temporaryPostedComment.author}</p>
-            <CommentDelete comment_id={temporaryPostedComment.comment_id} />
-          </div>
-          <p className="dark:text-gray-300">Posted on: {temporaryPostedComment.created_at.slice(0, 10)}</p>
-          <p className="dark:text-gray-300">{temporaryPostedComment.body}</p>
-          <CommentVote comment={temporaryPostedComment} />
-        </div>
+        <ul className="self-stretch max-w-[750px] flex-col justify-center items-center ">
+          {temporaryPostedCommentList.map((temporaryPostedComment) => {
+            return (
+              <li
+                className={`group shadow-md p-2 mt-3 mb-3 bg-white border-2 dark:bg-gray-800 border-blue-500 rounded ${
+                  isDeleteCustomError && temporaryPostedComment.comment_id === deletedCommentId
+                    ? "border-red-500 dark:border-red-500"
+                    : "dark:border-blue-500"
+                }`}
+                key={temporaryPostedComment.comment_id}
+              >
+                <div className="flex justify-between">
+                  <p
+                    className={` ${
+                      loggedInUser.username === temporaryPostedComment.author ? "text-blue-500 dark:text-blue-500" : "dark:text-gray-300"
+                    }`}
+                  >
+                    {temporaryPostedComment.author}
+                  </p>
+                  {isDeleteCustomError && temporaryPostedComment.comment_id === deletedCommentId && (
+                    <p className="text-red-500">Whoops! failed to delete your comment. try again later</p>
+                  )}
+
+                  <CommentDelete
+                    comment_id={temporaryPostedComment.comment_id}
+                    isDeleteCustomError={isDeleteCustomError}
+                    setIsDeleteCustomError={setIsDeleteCustomError}
+                    setDeletedCommentId={setDeletedCommentId}
+                  />
+                </div>
+
+                <p className="dark:text-gray-300">Posted on: {temporaryPostedComment.created_at.slice(0, 10)}</p>
+                <p className="dark:text-gray-300">{temporaryPostedComment.body}</p>
+
+                <CommentVote comment={temporaryPostedComment} />
+              </li>
+            );
+          })}
+        </ul>
       )}
       <ul className="self-stretch max-w-[750px] flex-col justify-center items-center ">
         {commentsList.map((comment) => {
           return (
-            <li className=" group shadow-md p-2 mt-3 mb-3 dark:border-2 dark:border-gray-500 rounded" key={comment.comment_id}>
+            <li
+              className={`group shadow-md p-2 mt-3 mb-3 bg-white border-2 dark:bg-gray-800 rounded ${
+                isDeleteCustomError && comment.comment_id === deletedCommentId ? "border-red-500 dark:border-red-500" : "dark:border-gray-500"
+              }`}
+              key={comment.comment_id}
+            >
               <div className="flex justify-between">
                 <p className={` ${loggedInUser.username === comment.author ? "text-blue-500 dark:text-blue-500" : "dark:text-gray-300"}`}>
                   {comment.author}
                 </p>
-                {loggedInUser.username === comment.author ? <CommentDelete comment_id={comment.comment_id} /> : <p></p>}
+                {isDeleteCustomError && comment.comment_id === deletedCommentId && (
+                  <p className="text-red-500">Whoops! failed to delete your comment. try again later</p>
+                )}
+                {loggedInUser.username === comment.author ? (
+                  <CommentDelete
+                    comment_id={comment.comment_id}
+                    isDeleteCustomError={isDeleteCustomError}
+                    setIsDeleteCustomError={setIsDeleteCustomError}
+                    setDeletedCommentId={setDeletedCommentId}
+                  />
+                ) : (
+                  <p></p>
+                )}
               </div>
 
               <p className="dark:text-gray-300">Posted on: {comment.created_at.slice(0, 10)}</p>
               <p className="dark:text-gray-300">{comment.body}</p>
+
               <CommentVote comment={comment} />
             </li>
           );
@@ -91,7 +141,7 @@ export default function CommentsList(props) {
       </ul>
       {areMorePages ? (
         <button
-          className="btn self-stretch max-w-50 m-2 mb-5 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-500"
+          className="btn self-stretch bg-white max-w-50 m-2 mb-5 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-500"
           onClick={handleLoadMoreComments}
         >
           Load More
