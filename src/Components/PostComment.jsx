@@ -7,15 +7,17 @@ export default function PostComment(props) {
   const { article_id, setTemporaryPostedComment, setOptimisticCommentCount } = props;
   const { loggedInUser } = useContext(UserContext);
   const [commentTextInput, setCommentTextInput] = useState("");
+  const [emptyCommentBox, setEmptyCommentBox] = useState(false);
 
   function handleCommentChange(event) {
     setCommentTextInput(event.target.value);
+    setEmptyCommentBox(false);
   }
 
   function handleCommentSubmit(event) {
     event.preventDefault();
-    if (loggedInUser.username === "") {
-      logInModal.showModal();
+    if (commentTextInput.length < 1) {
+      setEmptyCommentBox(true);
     } else {
       setOptimisticCommentCount((currentValue) => {
         return currentValue + 1;
@@ -36,45 +38,33 @@ export default function PostComment(props) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleCommentSubmit} className="flex flex-col justify-center items-center shadow-md p-2 m-2">
-        <label>
-          <textarea
-            className="textarea textarea-bordered w-[380px] h-40 dark:bg-gray-800 dark:text-gray-300"
-            placeholder="comment"
-            onChange={handleCommentChange}
-            value={commentTextInput}
-          ></textarea>
-        </label>
-        <button className="btn bg-white dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500">
-          Post Comment
-        </button>
-      </form>
-      <dialog id="logInModal" className="modal">
-        <div className="modal-box">
-          <h3 className="text-lg font-bold">You are not logged in!</h3>
-          <p className="py-4">You must be logged in to post. do you want to login now?</p>
-          <div className="modal-action flex flex-row items-center justify-evenly ">
-            <form method="dialog">
-              <Link to="/login" className="btn mr-5">
-                Yes (go to login page)
-              </Link>
-              <button className="btn ">No (continue browsing)</button>
-            </form>
-          </div>
+    <div className="flex flex-col self-stretch justify-center ">
+      {loggedInUser.username !== "" ? (
+        <form onSubmit={handleCommentSubmit} className="flex  flex-col justify-center items-center shadow-md pt-2 mt-2">
+          <label className="flex self-stretch flex-col">
+            <textarea
+              className="textarea w-full textarea-bordered h-40 dark:bg-gray-800 dark:text-gray-300"
+              placeholder="comment"
+              onChange={handleCommentChange}
+              value={commentTextInput}
+            ></textarea>
+          </label>
+          {emptyCommentBox && <p className="text-red-500">You need to enter something to post!</p>}
+          <button className="btn bg-white self-stretch mt-2 dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500">
+            Post Comment
+          </button>
+        </form>
+      ) : (
+        <div className="flex flex-col justify-center items-center">
+          <p className="dark:text-gray-300 ">You must be logged in to post. do you want to login now?</p>
+          <Link
+            to="/login"
+            className="btn mr-5 dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500"
+          >
+            Yes (go to login page)
+          </Link>
         </div>
-      </dialog>
-      <dialog id="postingErrorModal" className="modal">
-        <div className="modal-box">
-          <h3 className="text-lg font-bold">Something went wrong!</h3>
-          <p className="py-4">Please try posting again</p>
-          <div className="modal-action flex flex-row items-center justify-evenly ">
-            <form method="dialog">
-              <button className="btn ">Close this window</button>
-            </form>
-          </div>
-        </div>
-      </dialog>
+      )}
     </div>
   );
 }

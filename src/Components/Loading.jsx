@@ -1,5 +1,7 @@
 import React from "react";
+import loadingAnimation from "../assets/loadingAnimation.json";
+import Lottie from "lottie-react";
 
 export default function Loading() {
-  return <div className="dark:text-gray-300">Loading...</div>;
+  return <Lottie animationData={loadingAnimation} loop={true} />;
 }

@@ -79,7 +79,7 @@ export default function Header() {
                   <Link className="dark:text-gray-300" to="/user">
                     User Profile
                   </Link>
-                  <Link className="dark:text-gray-300" onClick={handleSignOutClick} to="/">
+                  <Link className="dark:text-gray-300" onClick={handleSignOutClick}>
                     Sign Out
                   </Link>
                 </li>

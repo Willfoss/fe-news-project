@@ -52,7 +52,7 @@ export default function CommentsList(props) {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex self-stretch flex-col justify-center items-center w-100 m-5">
       <PostComment
         article_id={article_id}
         setTemporaryPostedComment={setTemporaryPostedComment}
@@ -71,12 +71,14 @@ export default function CommentsList(props) {
           <CommentVote comment={temporaryPostedComment} />
         </div>
       )}
-      <ul className="max-w-[400px] w-[400px] flex-col justify-center items-center ">
+      <ul className="self-stretch max-w-[750px] flex-col justify-center items-center ">
         {commentsList.map((comment) => {
           return (
             <li className=" group shadow-md p-2 mt-3 mb-3 dark:border-2 dark:border-gray-500 rounded" key={comment.comment_id}>
               <div className="flex justify-between">
-                <p className="dark:text-gray-300">{comment.author}</p>
+                <p className={` ${loggedInUser.username === comment.author ? "text-blue-500 dark:text-blue-500" : "dark:text-gray-300"}`}>
+                  {comment.author}
+                </p>
                 {loggedInUser.username === comment.author ? <CommentDelete comment_id={comment.comment_id} /> : <p></p>}
               </div>
 
