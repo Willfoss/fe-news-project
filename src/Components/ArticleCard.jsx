@@ -15,7 +15,7 @@ export default function ArticleCard(props) {
         <p className={` ${loggedInUser.username === article.author ? "text-blue-500 dark:text-blue-500" : "dark:text-gray-300"}`}>
           by: {article.author}
         </p>
-        <h2 className="card-title dark:text-gray-300 pl-2">{article.title}</h2>
+        <h2 className="card-title dark:text-gray-300">{article.title}</h2>
         <figure>
           <img className="rounded-md " src={article.article_img_url} alt={`image for article ${article.title}`} />
         </figure>

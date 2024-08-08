@@ -11,7 +11,7 @@ import User from "./Components/User";
 import Signup from "./Components/Signup";
 import HomeFilterProvider from "./Components/HomeFilterProvider";
 import PostArticle from "./Components/PostArticle";
-import Error from "./Components/Error";
+import BadPathError from "./Components/BadPathError";
 
 function App() {
   const { loggedInUser } = useContext(UserContext);
@@ -28,7 +28,7 @@ function App() {
           <Route path="/user" element={loggedInUser.username != "" ? <User /> : <Navigate to="/login" />} />
           <Route path="/signup" element={loggedInUser.username === "" ? <Signup /> : <Navigate to="/" />} />
           <Route path="/postarticle" element={loggedInUser.username !== "" ? <PostArticle /> : <Navigate to="/login" />} />
-          <Route path="*" element={<Error />} />
+          <Route path="*" element={<BadPathError />} />
         </Routes>
       </main>
       <Footer />

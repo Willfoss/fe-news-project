@@ -16,6 +16,7 @@ export default function HomeFilterProvider() {
   return (
     <div className="flex flex-col justify-center items-center">
       <Topics
+        topic={topic}
         setTopic={setTopic}
         sortBy={sortBy}
         setSortBy={setSortBy}

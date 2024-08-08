@@ -9,7 +9,7 @@ export default function Login() {
   const [selectedUser, setSelectedUser] = useState("");
   const { setLoggedInUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
 
   function handleUserSelect(event) {
     setSelectedUser(event.target.value);
@@ -24,7 +24,7 @@ export default function Login() {
       })
       .catch(() => {
         setIsLoading(false);
-        setIsError(true);
+        setError(true);
       });
   }
 
@@ -37,7 +37,9 @@ export default function Login() {
 
   if (isLoading) return <Loading />;
 
-  if (isError) return <Error />;
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
     <section id="login-container" className="flex flex-col self-start mt-20 justify-start item start border-2 rounded p-5">

@@ -13,7 +13,7 @@ export default function CommentsList(props) {
   const { loggedInUser } = useContext(UserContext);
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
   const [commentsList, setCommentsList] = useState([]);
   const [temporaryPostedCommentList, setTemporaryPostedCommentList] = useState([]);
   const [page, setPage] = useState(1);
@@ -39,8 +39,8 @@ export default function CommentsList(props) {
         });
         setIsLoading(false);
       })
-      .catch(() => {
-        setIsError(true);
+      .catch((error) => {
+        setError(error);
         setIsLoading(false);
       });
   }, [article_id, page]);
@@ -49,8 +49,8 @@ export default function CommentsList(props) {
     return <Loading />;
   }
 
-  if (isError) {
-    return <Error />;
+  if (error) {
+    return <Error error={error} />;
   }
 
   return (

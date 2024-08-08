@@ -4,24 +4,22 @@ import Loading from "./Loading";
 import { useSearchParams } from "react-router-dom";
 
 export default function Topics(props) {
-  const { setTopic, sortBy, order, setArticleList, setLimit, setPage } = props;
+  const { setTopic, topic, sortBy, order, setArticleList, setLimit, setPage } = props;
   const [topicsList, setTopicsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("All Topics");
   let [searchParams, setSearchParams] = useSearchParams();
 
   function handleTopicSelectorClick(event) {
     event.preventDefault();
     if (event.target.outerText === "All Topics") {
-      setLimit(10);
       setTopic("");
       setSelectedTopic("All Topics");
       setArticleList([]);
       setPage(1);
       setSearchParams({ sort_by: sortBy, order: order });
     } else {
-      setLimit(10);
       setTopic(event.target.outerText);
       setSelectedTopic(event.target.outerText);
       setArticleList([]);
@@ -37,15 +35,17 @@ export default function Topics(props) {
         setTopicsList(topics);
         setIsLoading(false);
       })
-      .catch(() => {
-        setIsError(true);
+      .catch((error) => {
+        setError(error);
         setIsLoading(false);
       });
   }, []);
 
   //hmm do i want these as loading will appear twice on the screen with the article loading?
   if (isLoading) return <Loading />;
-  if (isError) return <Error />;
+  if (error) {
+    return <Error error={error} />;
+  }
 
   return (
     <div className="flex flex-col justify-center items-center mt-10">

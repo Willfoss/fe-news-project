@@ -65,7 +65,7 @@ export default function Header() {
               </ul>
             </div>
           ) : (
-            <div className="dropdown dropdown-end dark:bg-gray-800">
+            <div className="dropdown dropdown-end dark:bg-gray-800 ">
               <img
                 tabIndex={0}
                 role="button"
@@ -73,13 +73,13 @@ export default function Header() {
                 src={!loggedInUser.avatar_url ? user : loggedInUser.avatar_url}
               ></img>
 
-              <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
+              <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow ">
                 <li>
                   <p className="pointer-events-none focus:bg-white ml-0 p-0 dark:text-gray-300">Logged in as {loggedInUser.username}</p>
-                  <Link className="dark:text-gray-300" to="/user">
+                  <Link className="dark:text-gray-300 dark:hover:bg-gray-400" to="/user">
                     User Profile
                   </Link>
-                  <Link className="dark:text-gray-300" onClick={handleSignOutClick}>
+                  <Link className="dark:text-gray-300 dark:hover:bg-gray-400" onClick={handleSignOutClick}>
                     Sign Out
                   </Link>
                 </li>
