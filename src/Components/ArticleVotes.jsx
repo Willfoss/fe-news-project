@@ -14,11 +14,26 @@ export default function ArticleVotes(props) {
   const [articleError, setarticleError] = useState("");
 
   function incrementVote() {
-    if ((articlePositiveVoteNumber === 0 && optimisticVotes === 0) || articleNegativeVoteNumber === 1) {
+    if (articlePositiveVoteNumber === 0 && articleNegativeVoteNumber === 1) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setarticlePositiveVoteNumber(1);
         localStorage.setItem(`articlePosVoteCount${article.article_id}`, 1);
         setarticleNegativeVoteNumber(0);
+        localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
+        return currentOptimisticvotes + 2;
+      });
+      patchArticleByarticleId(article.article_id, 2).catch(() => {
+        setOptimisticVotes((currentOptimisticvotes) => {
+          setarticlePositiveVoteNumber(0);
+          localStorage.setItem(`articlePosVoteCount${article.article_id}`, 0);
+          setarticleError("whoops something went wrong! please try again");
+          return currentOptimisticvotes - 2;
+        });
+      });
+    } else if (articlePositiveVoteNumber === 0) {
+      setOptimisticVotes((currentOptimisticvotes) => {
+        setarticlePositiveVoteNumber(1);
+        localStorage.setItem(`articlePosVoteCount${article.article_id}`, 1);
         setarticleNegativeVoteNumber(0);
         localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
         return currentOptimisticvotes + 1;
@@ -31,10 +46,42 @@ export default function ArticleVotes(props) {
           return currentOptimisticvotes - 1;
         });
       });
+    } else if (articlePositiveVoteNumber === 1) {
+      setOptimisticVotes((currentOptimisticvotes) => {
+        setarticlePositiveVoteNumber(0);
+        localStorage.setItem(`articlePosVoteCount${article.article_id}`, 0);
+        setarticleNegativeVoteNumber(0);
+        localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
+        return currentOptimisticvotes - 1;
+      });
+      patchArticleByarticleId(article.article_id, -1).catch(() => {
+        setOptimisticVotes((currentOptimisticvotes) => {
+          setarticlePositiveVoteNumber(1);
+          localStorage.setItem(`articlePosVoteCount${article.article_id}`, 1);
+          setarticleError("whoops something went wrong! please try again");
+          return currentOptimisticvotes + 1;
+        });
+      });
     }
   }
   function decrementVote() {
-    if ((articleNegativeVoteNumber === 0 && optimisticVotes === 0) || articlePositiveVoteNumber === 1) {
+    if (articleNegativeVoteNumber === 0 && articlePositiveVoteNumber === 1) {
+      setOptimisticVotes((currentOptimisticvotes) => {
+        setarticleNegativeVoteNumber(1);
+        localStorage.setItem(`articleNegVoteCount${article.article_id}`, 1);
+        setarticlePositiveVoteNumber(0);
+        localStorage.setItem(`articlePosVoteCount${article.article_id}`, 0);
+        return currentOptimisticvotes - 2;
+      });
+      patchArticleByarticleId(article.article_id, -2).catch(() => {
+        setOptimisticVotes((currentOptimisticvotes) => {
+          setarticleNegativeVoteNumber(0);
+          localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
+          setarticleError("whoops something went wrong! please try again");
+          return currentOptimisticvotes + 2;
+        });
+      });
+    } else if (articleNegativeVoteNumber === 0) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setarticleNegativeVoteNumber(1);
         localStorage.setItem(`articleNegVoteCount${article.article_id}`, 1);
@@ -48,6 +95,22 @@ export default function ArticleVotes(props) {
           localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
           setarticleError("whoops something went wrong! please try again");
           return currentOptimisticvotes + 1;
+        });
+      });
+    } else if (articleNegativeVoteNumber === 1) {
+      setOptimisticVotes((currentOptimisticvotes) => {
+        setarticleNegativeVoteNumber(0);
+        localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
+        setarticlePositiveVoteNumber(0);
+        localStorage.setItem(`articlePosVoteCount${article.article_id}`, 0);
+        return currentOptimisticvotes + 1;
+      });
+      patchArticleByarticleId(article.article_id, 1).catch(() => {
+        setOptimisticVotes((currentOptimisticvotes) => {
+          setarticleNegativeVoteNumber(0);
+          localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
+          setarticleError("whoops something went wrong! please try again");
+          return currentOptimisticvotes - 1;
         });
       });
     }
