@@ -49,6 +49,7 @@ export default function Login() {
           value={selectedUser}
           className="select select-bordered w-60 max-w-xs bg-white text-gray-700 dark:text-gray-300 dark:bg-gray-800"
           onChange={handleUserSelect}
+          aria-label="username drop down menu"
         >
           {userList.map((user) => {
             return (

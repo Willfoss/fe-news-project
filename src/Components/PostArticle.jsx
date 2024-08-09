@@ -74,24 +74,30 @@ export default function PostArticle() {
     </h2>
   ) : (
     <div className="flex justify-center items-center w-screen">
-      <form onSubmit={handleArticlePost} id="login-container" className="flex flex-col border-2 rounded p-5 mt-10 mb-10 dark:border-gray-500">
-        <label className="flex flex-col text-gray-700 justify-center dark:text-gray-300" htmlFor="username-input">
+      <form
+        onSubmit={handleArticlePost}
+        aria-label="post articles form"
+        id="login-container"
+        className="flex flex-col border-2 rounded p-5 mt-10 mb-10 dark:border-gray-500"
+      >
+        <label aria-label="select a topic" className="flex flex-col text-gray-700 justify-center dark:text-gray-300" htmlFor="username-input">
           Select a Topic:
+          <select
+            onChange={handleTopicChange}
+            value={topicInput}
+            aria-label="select a topic"
+            className="select select-bordered max-w-xs bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+          >
+            <option></option>
+            {topicsList.map((topic) => {
+              return (
+                <option value={topic.slug} className="btn mr-3 bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300" key={topic.slug}>
+                  {topic.slug}
+                </option>
+              );
+            })}
+          </select>
         </label>
-        <select
-          onChange={handleTopicChange}
-          value={topicInput}
-          className="select select-bordered max-w-xs bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
-        >
-          <option></option>
-          {topicsList.map((topic) => {
-            return (
-              <option value={topic.slug} className="btn mr-3 bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300" key={topic.slug}>
-                {topic.slug}
-              </option>
-            );
-          })}
-        </select>
         <label className="flex flex-col justify-center m-2 text-gray-700 dark:text-gray-300">
           Title:
           <input

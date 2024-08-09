@@ -36,6 +36,7 @@ export default function sortBy(props) {
         onChange={handleSortChange}
         className="select m-2 select-bordered w-full max-w-xs min-w-[140px] text-gray-700 bg-white dark:bg-gray-800 border-gray-800 dark:border-gray-800  dark:text-gray-300"
         value={sortBy}
+        aria-label="sort by dropdown"
       >
         <option className="font-bold text-black text-gray-700 dark:text-gray-200" disabled>
           Sort By
@@ -48,8 +49,9 @@ export default function sortBy(props) {
       </select>
       <select
         onChange={handleOrderChange}
-        className="select m-2 select-bordered bg-white text-gray-700 dark:border-gray-800  border-gray-800 min-w-[140px] dark:bg-gray-800  dark:text-gray-300"
+        className="select m-2 select-bordered bg-white text-gray-700 dark:border-gray-800  border-gray-800min-w-[140px] dark:bg-gray-800  dark:text-gray-300"
         value={order}
+        aria-label="order by dropdown"
       >
         <option className="font-bold text-black dark:text-gray-200" disabled>
           Order

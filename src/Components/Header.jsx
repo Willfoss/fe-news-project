@@ -104,12 +104,13 @@ export default function Header() {
             ></Moon>
           )}
           {loggedInUser.username === "" ? (
-            <div className="dropdown dropdown-end bg-white dark:bg-gray-800">
+            <div aria-label="order by dropdown" className="dropdown dropdown-end bg-white dark:bg-gray-800">
               <img
                 tabIndex={0}
                 role="button"
                 className="min-w-[30px] w-[30px]  rounded-full hover:outline hover:outline-orange-400 "
                 src={defaultUserPicture}
+                alt="default profile picture icon of a greyed out human outline"
               ></img>
               <ul tabIndex={0} className="menu dropdown-content bg-white bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
                 <li onClick={handleDropdownUnfocus}>
@@ -120,12 +121,13 @@ export default function Header() {
               </ul>
             </div>
           ) : (
-            <div className="dropdown dropdown-end bg-white dark:bg-gray-800 ">
+            <div aria-label="order by dropdown" className="dropdown dropdown-end bg-white dark:bg-gray-800 ">
               <img
                 tabIndex={0}
                 role="button"
                 className="  dark:bg-white min-h-[30px] h-[30px] min-w-[30px] w-[30px] object-cover rounded-full hover:outline hover:outline-orange-400 rounded-full "
                 src={!loggedInUser.avatar_url ? user : loggedInUser.avatar_url}
+                alt="logged in user profile picture"
               ></img>
 
               <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box bg-white dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow ">
