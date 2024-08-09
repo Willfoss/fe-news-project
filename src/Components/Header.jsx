@@ -14,15 +14,20 @@ export default function Header() {
     height: window.innerHeight,
   });
 
-  console.log(windowPixels.width);
-
-  const handleHeaderClick = () => {
+  function handleHeaderClick() {
     navigate("/");
-  };
+  }
 
-  const handleSignOutClick = () => {
+  function handleSignOutClick() {
     setLoggedInUser({ username: "" });
-  };
+  }
+
+  function handleDropdownUnfocus() {
+    const elem = document.activeElement;
+    if (elem) {
+      elem?.blur();
+    }
+  }
 
   useEffect(() => {
     function handleResize() {
@@ -65,16 +70,24 @@ export default function Header() {
               <Menu tabIndex={0} role="button" className="imp-menu text-gray-700 dark:text-gray-300 dark:bg-gray-900"></Menu>
               <ul tabIndex={0} className="menu dropdown-content bg-white bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
                 <li>
-                  <Link className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/">
+                  <Link onClick={handleDropdownUnfocus} className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/">
                     Articles
                   </Link>
                   {loggedInUser.username !== "" && (
-                    <Link className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/postarticle">
+                    <Link
+                      onClick={handleDropdownUnfocus}
+                      className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400"
+                      to="/postarticle"
+                    >
                       Post An Article
                     </Link>
                   )}
                   {loggedInUser.username !== "" && (
-                    <Link className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/postarticle">
+                    <Link
+                      onClick={handleDropdownUnfocus}
+                      className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400"
+                      to="/postarticle"
+                    >
                       Add a Topic
                     </Link>
                   )}
@@ -99,7 +112,7 @@ export default function Header() {
                 src={user}
               ></img>
               <ul tabIndex={0} className="menu dropdown-content bg-white bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
-                <li>
+                <li onClick={handleDropdownUnfocus}>
                   <Link className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/login">
                     Login
                   </Link>
@@ -116,7 +129,7 @@ export default function Header() {
               ></img>
 
               <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box bg-white dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow ">
-                <li>
+                <li onClick={handleDropdownUnfocus}>
                   <p className="pointer-events-none text-gray-700 focus:bg-white ml-0 p-0 dark:text-gray-300">Logged in as {loggedInUser.username}</p>
                   <Link className="text-gray-700 dark:text-gray-300 dark:hover:bg-gray-400" to="/user">
                     User Profile
