@@ -43,7 +43,6 @@ export function patchCommentByCommentId(comment_id, votes) {
 
 export function patchArticleByarticleId(article_id, votes) {
   return ncNewsApi.patch(`/articles/${article_id}`, { inc_votes: votes }).then(({ data }) => {
-    console.log(data);
     return data;
   });
 }
