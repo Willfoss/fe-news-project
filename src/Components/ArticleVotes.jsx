@@ -34,8 +34,6 @@ export default function ArticleVotes(props) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setarticlePositiveVoteNumber(1);
         localStorage.setItem(`articlePosVoteCount${article.article_id}`, 1);
-        setarticleNegativeVoteNumber(0);
-        localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
         return currentOptimisticvotes + 1;
       });
       patchArticleByarticleId(article.article_id, 1).catch(() => {
@@ -50,8 +48,6 @@ export default function ArticleVotes(props) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setarticlePositiveVoteNumber(0);
         localStorage.setItem(`articlePosVoteCount${article.article_id}`, 0);
-        setarticleNegativeVoteNumber(0);
-        localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
         return currentOptimisticvotes - 1;
       });
       patchArticleByarticleId(article.article_id, -1).catch(() => {
@@ -85,8 +81,6 @@ export default function ArticleVotes(props) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setarticleNegativeVoteNumber(1);
         localStorage.setItem(`articleNegVoteCount${article.article_id}`, 1);
-        setarticlePositiveVoteNumber(0);
-        localStorage.setItem(`articlePosVoteCount${article.article_id}`, 0);
         return currentOptimisticvotes - 1;
       });
       patchArticleByarticleId(article.article_id, -1).catch(() => {
@@ -101,8 +95,6 @@ export default function ArticleVotes(props) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setarticleNegativeVoteNumber(0);
         localStorage.setItem(`articleNegVoteCount${article.article_id}`, 0);
-        setarticlePositiveVoteNumber(0);
-        localStorage.setItem(`articlePosVoteCount${article.article_id}`, 0);
         return currentOptimisticvotes + 1;
       });
       patchArticleByarticleId(article.article_id, 1).catch(() => {

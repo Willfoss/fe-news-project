@@ -36,8 +36,6 @@ export default function CommentVote(props) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setCommentPositiveVoteNumber(1);
         localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 1);
-        setCommentNegativeVoteNumber(0);
-        localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 0);
 
         return currentOptimisticvotes + 1;
       });
@@ -54,8 +52,6 @@ export default function CommentVote(props) {
         setOptimisticVotes((currentOptimisticvotes) => {
           setCommentPositiveVoteNumber(0);
           localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 0);
-          setCommentNegativeVoteNumber(0);
-          localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 0);
 
           return currentOptimisticvotes - 1;
         });
@@ -91,8 +87,6 @@ export default function CommentVote(props) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setCommentNegativeVoteNumber(1);
         localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 1);
-        setCommentPositiveVoteNumber(0);
-        localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 0);
         return currentOptimisticvotes - 1;
       });
       patchCommentByCommentId(comment.comment_id, -1).catch(() => {
@@ -107,8 +101,6 @@ export default function CommentVote(props) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setCommentNegativeVoteNumber(0);
         localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 0);
-        setCommentPositiveVoteNumber(0);
-        localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 0);
         return currentOptimisticvotes + 1;
       });
       patchCommentByCommentId(comment.comment_id, 1).catch(() => {
