@@ -84,6 +84,7 @@ export default function CommentsList(props) {
                   >
                     {temporaryPostedComment.author}
                   </p>
+                  {console.log(isDeleteCustomError)}
                   {isDeleteCustomError && temporaryPostedComment.comment_id === deletedCommentId && (
                     <p className="text-red-500">Whoops! failed to delete your comment. try again later</p>
                   )}

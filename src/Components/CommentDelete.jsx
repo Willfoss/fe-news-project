@@ -7,16 +7,20 @@ export default function CommentDelete(props) {
   const { comment_id, isDeleteCustomError, setIsDeleteCustomError, setDeletedCommentId } = props;
   const [isDeleteInProgress, setIsDeleteInProgress] = useState(false);
 
+  const refreshPage = () => {
+    window.parent.location = window.parent.location.href;
+  };
+
   function handleDeleteClick(event) {
     setIsDeleteCustomError(false);
     setIsDeleteInProgress(true);
-
     deleteCommentByArticleId(comment_id)
       .then(() => {
         setIsDeleteInProgress(false);
-        window.location.reload();
+        refreshPage();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         setDeletedCommentId(comment_id);
         setIsDeleteCustomError(true);
         setIsDeleteInProgress(false);
