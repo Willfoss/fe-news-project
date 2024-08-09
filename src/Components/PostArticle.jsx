@@ -60,8 +60,8 @@ export default function PostArticle() {
     }
 
     postArticle(loggedInUser.username, titleInput, bodyInput, urlInput, topicInput)
-      .then(() => {
-        navigate("/user");
+      .then(({ article }) => {
+        navigate(`/articles/${article.article_id}`);
       })
       .catch(() => {
         setIsPostingError(true);
@@ -115,7 +115,7 @@ export default function PostArticle() {
             minLength={5}
           />
         </label>
-        <label className="flex flex-col justify-center m-2 text-gray-700 dark:text-gray-300 dark:bg-gray-800">
+        <label className="flex flex-col justify-center m-2 text-gray-700 dark:text-gray-300 dark:bg-gray-900">
           Body:
           <textarea
             className="textarea textarea-bordered  min-h-72 max-w-xs bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"

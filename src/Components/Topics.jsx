@@ -14,7 +14,6 @@ export default function Topics(props) {
 
   function handleTopicSelectorClick(event) {
     event.preventDefault();
-    console.log(event.target.textContent);
     if (event.target.textContent === "All Topics") {
       const elem = document.activeElement;
       if (elem) {

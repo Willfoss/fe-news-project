@@ -43,6 +43,7 @@ export function patchCommentByCommentId(comment_id, votes) {
 
 export function patchArticleByarticleId(article_id, votes) {
   return ncNewsApi.patch(`/articles/${article_id}`, { inc_votes: votes }).then(({ data }) => {
+    console.log(data);
     return data;
   });
 }
@@ -85,7 +86,6 @@ export function postUser(username, name, url) {
 
 export function postTopic(slug, description) {
   return ncNewsApi.post(`/topics`, { slug: slug, description: description }).then(({ data }) => {
-    console.log(data);
     return data;
   });
 }
@@ -101,7 +101,7 @@ export function getUserArticles(author) {
 }
 
 export function postArticle(author, title, body, url, topic) {
-  return ncNewsApi.post(`/articles`, { author: author, title: title, body: body, url: url, topic: topic }).then(({ data }) => {
+  return ncNewsApi.post(`/articles`, { author: author, title: title, body: body, article_img_url: url, topic: topic }).then(({ data }) => {
     return data;
   });
 }

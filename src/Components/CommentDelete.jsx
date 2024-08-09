@@ -20,7 +20,6 @@ export default function CommentDelete(props) {
         refreshPage();
       })
       .catch((err) => {
-        console.log(err);
         setDeletedCommentId(comment_id);
         setIsDeleteCustomError(true);
         setIsDeleteInProgress(false);
