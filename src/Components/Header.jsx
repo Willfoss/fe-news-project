@@ -55,12 +55,12 @@ export default function Header() {
                 Articles
               </Link>
               {loggedInUser.username !== "" && (
-                <Link to="postarticle" className="px-3 text-gray-700 dark:text-gray-300">
+                <Link to="/postarticle" className="px-3 text-gray-700 dark:text-gray-300">
                   Post an Article
                 </Link>
               )}
               {loggedInUser.username !== "" && (
-                <Link to="addtopic" className="px-3 text-gray-700 dark:text-gray-300">
+                <Link to="/addtopic" className="px-3 text-gray-700 dark:text-gray-300">
                   Add a Topic
                 </Link>
               )}

@@ -68,14 +68,14 @@ export default function Topics(props) {
       <div className="dropdown dropdown-end bg-gray-100 dark:bg-gray-900">
         <button
           tabIndex={0}
-          className="btn w-[150px] flex justify-start bg-white dark:border-gray-800 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+          className="btn w-[150px] border-gray-800 flex justify-start bg-white dark:border-gray-800 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
         >
           <Menu className="mr-2" />
           {topic === "" ? "All Topics" : topic}
         </button>
         <ul tabIndex={0} className="menu dropdown-content bg-white bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
           <li
-            className={`btn mr-3  text-gray-700 dark:text-gray-300 dark:border-gray-800 ${
+            className={`btn mr-3  text-gray-700 dark:text-gray-300 ${
               "All Topics" === selectedTopic ? "bg-gray-400 dark:bg-gray-500" : "dark:bg-gray-800 bg-white"
             }`}
             onClick={handleTopicSelectorClick}
