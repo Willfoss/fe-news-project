@@ -45,7 +45,7 @@ export default function Header() {
       <div className="w-[1000px] flex items-center justify-between ">
         <div className="flex items-center cursor-pointer" onClick={handleHeaderClick}>
           <Newspaper className="newspaper dark:text-gray-300 min-w-[50px] w-[50px]"></Newspaper>
-          <h1 className="min-w-[80px] text-gray-700 dark:text-gray-300 px-2">NC news</h1>
+          <h1 className="min-w-[80px] text-gray-700 dark:text-gray-300 px-2">dotComment</h1>
         </div>
 
         <div className=" flex justify-center items-center">
