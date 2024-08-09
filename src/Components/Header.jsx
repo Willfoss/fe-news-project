@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Moon, Sun, Newspaper } from "lucide-react";
+import React, { useContext, useEffect, useState } from "react";
+import { Moon, Sun, Newspaper, Menu } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import user from "../assets/user.png";
 import { ThemeContext } from "../Context/ThemeContext";
@@ -9,6 +9,12 @@ export default function Header() {
   let navigate = useNavigate();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+  const [windowPixels, setWindowPixels] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  console.log(windowPixels.width);
 
   const handleHeaderClick = () => {
     navigate("/");
@@ -17,6 +23,17 @@ export default function Header() {
   const handleSignOutClick = () => {
     setLoggedInUser({ username: "" });
   };
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowPixels({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="navbar border-b-2 text-gray-700 bg-white border-gray-300 dark:border-gray-300 w-screen flex items-center justify-center dark:bg-gray-900">
@@ -27,16 +44,44 @@ export default function Header() {
         </div>
 
         <div className=" flex justify-center items-center">
-          <ul className=" h-[40px] text-gray-700 flex items-center justify-evenly justify-end dark:text-gray-300 ">
-            <Link to="/articles" className="px-3">
-              Articles
-            </Link>
-            {loggedInUser.username !== "" && (
-              <Link to="postarticle" className="px-3 text-gray-700 dark:text-gray-300">
-                Post an Article
+          {windowPixels.width > 660 ? (
+            <ul className=" h-[40px] text-gray-700 flex items-center justify-evenly justify-end dark:text-gray-300 ">
+              <Link to="/articles" className="px-3">
+                Articles
               </Link>
-            )}
-          </ul>
+              {loggedInUser.username !== "" && (
+                <Link to="postarticle" className="px-3 text-gray-700 dark:text-gray-300">
+                  Post an Article
+                </Link>
+              )}
+              {loggedInUser.username !== "" && (
+                <Link to="postarticle" className="px-3 text-gray-700 dark:text-gray-300">
+                  Post an Article
+                </Link>
+              )}
+            </ul>
+          ) : (
+            <div className="dropdown dropdown-end bg-white dark:bg-gray-800">
+              <Menu tabIndex={0} role="button" className="imp-menu text-gray-700 dark:text-gray-300 dark:bg-gray-900"></Menu>
+              <ul tabIndex={0} className="menu dropdown-content bg-white bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
+                <li>
+                  <Link className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/">
+                    Articles
+                  </Link>
+                  {loggedInUser.username !== "" && (
+                    <Link className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/postarticle">
+                      Post An Article
+                    </Link>
+                  )}
+                  {loggedInUser.username !== "" && (
+                    <Link className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/postarticle">
+                      Add a Topic
+                    </Link>
+                  )}
+                </li>
+              </ul>
+            </div>
+          )}
           {theme === "light" ? (
             <Sun
               className="hover:text-yellow-400 min-w-[50px] w-[50px] hover: cursor-pointer sun dark:text-gray-300 px-3 mr-2"
