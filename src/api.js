@@ -83,6 +83,13 @@ export function postUser(username, name, url) {
   });
 }
 
+export function postTopic(slug, description) {
+  return ncNewsApi.post(`/topics`, { slug: slug, description: description }).then(({ data }) => {
+    console.log(data);
+    return data;
+  });
+}
+
 export function getUserArticles(author) {
   const queries = {
     params: {

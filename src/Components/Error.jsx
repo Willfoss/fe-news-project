@@ -5,7 +5,6 @@ export default function Error(props) {
 
   if (error.response) {
     const { error } = props;
-    console.log(error);
     const errorStatus = error.response.status;
 
     if (errorStatus === 404) {
