@@ -66,7 +66,7 @@ export default function Topics(props) {
   return (
     <div className="flex flex-col justify-center items-center mt-10">
       <div className="dropdown dropdown-end bg-gray-100 dark:bg-gray-900">
-        <button className="btn w-[150px] flex justify-start bg-white dark:border-gray-800 text-gray-700 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-400">
+        <button className="btn w-[150px] flex justify-start bg-white dark:border-gray-800 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
           <Menu className="mr-2" />
           {topic === "" ? "All Topics" : topic}
         </button>
