@@ -38,7 +38,7 @@ export default function sortBy(props) {
         value={sortBy}
         aria-label="sort by dropdown"
       >
-        <option className="font-bold text-black text-gray-700 dark:text-gray-200" disabled>
+        <option className="font-bold text-black  dark:text-gray-200" disabled>
           Sort By
         </option>
         <option value="author">Author</option>
@@ -49,7 +49,7 @@ export default function sortBy(props) {
       </select>
       <select
         onChange={handleOrderChange}
-        className="select m-2 select-bordered bg-white text-gray-700 dark:border-gray-800  border-gray-800min-w-[140px] dark:bg-gray-800  dark:text-gray-300"
+        className="select m-2 select-bordered bg-white text-gray-700 border-gray-800 dark:border-gray-800  border-gray-800min-w-[140px] dark:bg-gray-800  dark:text-gray-300"
         value={order}
         aria-label="order by dropdown"
       >
