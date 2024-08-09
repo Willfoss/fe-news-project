@@ -34,10 +34,10 @@ export default function sortBy(props) {
     <div className="flex p-2">
       <select
         onChange={handleSortChange}
-        className="select select-bordered w-full max-w-xs min-w-56 dark:bg-gray-800 dark:text-gray-300"
+        className="select select-bordered w-full max-w-xs min-w-56 text-gray-700 bg-white dark:bg-gray-800 dark:text-gray-300"
         value={sortBy}
       >
-        <option className="font-bold text-black dark:text-gray-200" disabled>
+        <option className="font-bold text-black text-gray-700 dark:text-gray-200" disabled>
           Sort By
         </option>
         <option value="author">Author</option>
@@ -48,7 +48,7 @@ export default function sortBy(props) {
       </select>
       <select
         onChange={handleOrderChange}
-        className="select select-bordered w-full max-w-xs min-w-56 dark:bg-gray-800  dark:text-gray-300"
+        className="select select-bordered bg-white text-gray-700 w-full max-w-xs min-w-56 dark:bg-gray-800  dark:text-gray-300"
         value={order}
       >
         <option className="font-bold text-black dark:text-gray-200" disabled>

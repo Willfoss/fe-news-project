@@ -51,7 +51,7 @@ export default function Topics(props) {
     <div className="flex flex-col justify-center items-center mt-10">
       <ul>
         <li
-          className={`btn mr-3  dark:text-gray-300 dark:border-gray-800 ${
+          className={`btn mr-3  text-gray-700 dark:text-gray-300 dark:border-gray-800 ${
             "All Topics" === selectedTopic ? "bg-gray-400 dark:bg-gray-500" : "dark:bg-gray-800 bg-white"
           }`}
           onClick={handleTopicSelectorClick}
@@ -62,7 +62,7 @@ export default function Topics(props) {
         {topicsList.map((topic) => {
           return (
             <li
-              className={`btn mr-3  dark:text-gray-300 dark:border-gray-800 ${
+              className={`btn mr-3  text-gray-700 dark:text-gray-300 border-white dark:border-gray-800 ${
                 topic.slug === selectedTopic ? "bg-gray-400 dark:bg-gray-500" : "dark:bg-gray-800 bg-white"
               }`}
               onClick={handleTopicSelectorClick}
