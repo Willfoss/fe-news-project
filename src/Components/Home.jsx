@@ -36,7 +36,6 @@ export default function Home(props) {
         setIsloading(false);
       })
       .catch((error) => {
-        "hello from catch block";
         setError(error);
         setIsloading(false);
       });
