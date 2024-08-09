@@ -50,23 +50,23 @@ export default function PostComment(props) {
         <form onSubmit={handleCommentSubmit} className="flex  flex-col justify-center items-center shadow-md pt-2 mt-2">
           <label className="flex self-stretch flex-col">
             <textarea
-              className="textarea w-full textarea-bordered h-40 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-400"
+              className="textarea w-full bg-white text-gray-700 textarea-bordered h-40 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-400"
               placeholder="comment"
               onChange={handleCommentChange}
               value={commentTextInput}
             ></textarea>
           </label>
           {emptyCommentBox && <p className="text-red-500">You need to enter something to post!</p>}
-          <button className="btn bg-white self-stretch mt-2 dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500">
+          <button className="btn bg-white text-gray-700 self-stretch mt-2 dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500">
             Post Comment
           </button>
         </form>
       ) : (
         <div className="flex flex-col justify-center items-center">
-          <p className="dark:text-gray-300 ">You must be logged in to post. do you want to login now?</p>
+          <p className="text-gray-700 dark:text-gray-300 ">You must be logged in to post. do you want to login now?</p>
           <Link
             to="/login"
-            className="btn mr-5 dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500"
+            className="btn mr-5 bg-white ext-gray-700 dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500"
           >
             Yes (go to login page)
           </Link>

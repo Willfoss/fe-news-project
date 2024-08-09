@@ -58,44 +58,44 @@ export default function Signup() {
 
   return (
     <form onSubmit={handleUserCreation} id="login-container" className="flex flex-col self-start mt-20 justify-start border-2 rounded p-5">
-      <label className="flex flex-col justify-center m-2 dark:text-gray-300">
+      <label className="flex flex-col text-gray-700 justify-center m-2 dark:text-gray-300">
         Enter a username:
         <input
           type="text"
           placeholder="Type here"
           onChange={handleUsernameChange}
           value={usernameInput}
-          className="input input-bordered w-full max-w-xs dark:text-gray-300 dark:bg-gray-800"
+          className="input input-bordered bg-white text-gray-700 w-full max-w-xs dark:text-gray-300 dark:bg-gray-800"
           minLength={5}
           required
         />
       </label>
-      <label className="flex flex-col justify-center m-2 dark:text-gray-300">
+      <label className="flex flex-col text-gray-700 justify-center m-2 dark:text-gray-300">
         Enter your name:
         <input
           type="text"
           placeholder="Type here"
           onChange={handleNameChange}
           value={nameInput}
-          className="input input-bordered w-full max-w-xs dark:text-gray-300 dark:bg-gray-800"
+          className="input input-bordered w-full bg-white text-gray-700 max-w-xs dark:text-gray-300 dark:bg-gray-800"
         />
       </label>
-      <label className="flex flex-col justify-center m-2 dark:text-gray-300">
+      <label className="flex flex-col text-gray-700 justify-center m-2 dark:text-gray-300">
         Enter an avatar URL:
         <input
           type="url"
           placeholder="Type here"
           onChange={handleUserAvatarChange}
           value={userAvatarInput}
-          className="input input-bordered w-full max-w-xs dark:text-gray-300 dark:bg-gray-800"
+          className="input input-bordered text-gray-700 bg-white w-full max-w-xs dark:text-gray-300 dark:bg-gray-800"
           minLength={5}
           required
         />
       </label>
       {customError ? <p className="text-red-500 ">*Username and avatar URL are required</p> : <p></p>}
-      <button className="btn bg-white mt-20 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500">Sign up!</button>
+      <button className="btn bg-white mt-20 text-gray-700 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500">Sign up!</button>
 
-      <Link to="/login" className="btn bg-white mt-2 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500">
+      <Link to="/login" className="btn bg-white text-gray-700 mt-2 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500">
         Back to login
       </Link>
     </form>

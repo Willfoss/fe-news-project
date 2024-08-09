@@ -67,17 +67,19 @@ export default function CommentsList(props) {
           {temporaryPostedCommentList.map((temporaryPostedComment) => {
             return (
               <li
-                className={`group shadow-md p-2 mt-3 mb-3 bg-white border-2 dark:bg-gray-800 border-blue-500 rounded ${
+                className={`group shadow-md p-2 mt-3 mb-3 bg-white border-2 dark:bg-gray-800  rounded ${
                   isDeleteCustomError && temporaryPostedComment.comment_id === deletedCommentId
                     ? "border-red-500 dark:border-red-500"
-                    : "dark:border-blue-500"
+                    : "border-blue-500 dark:border-blue-500"
                 }`}
                 key={temporaryPostedComment.comment_id}
               >
                 <div className="flex justify-between">
                   <p
                     className={` ${
-                      loggedInUser.username === temporaryPostedComment.author ? "text-blue-500 dark:text-blue-500" : "dark:text-gray-300"
+                      loggedInUser.username === temporaryPostedComment.author
+                        ? "text-blue-500 dark:text-blue-500"
+                        : "text-gray-700 dark:text-gray-300"
                     }`}
                   >
                     {temporaryPostedComment.author}
@@ -94,8 +96,8 @@ export default function CommentsList(props) {
                   />
                 </div>
 
-                <p className="dark:text-gray-300">Posted on: {temporaryPostedComment.created_at.slice(0, 10)}</p>
-                <p className="dark:text-gray-300">{temporaryPostedComment.body}</p>
+                <p className="text-gray-700 dark:text-gray-300">Posted on: {temporaryPostedComment.created_at.slice(0, 10)}</p>
+                <p className="text-gray-700 dark:text-gray-300">{temporaryPostedComment.body}</p>
 
                 <CommentVote comment={temporaryPostedComment} />
               </li>
@@ -131,8 +133,8 @@ export default function CommentsList(props) {
                 )}
               </div>
 
-              <p className="dark:text-gray-300">Posted on: {comment.created_at.slice(0, 10)}</p>
-              <p className="dark:text-gray-300">{comment.body}</p>
+              <p className="text-gray-700 dark:text-gray-300">Posted on: {comment.created_at.slice(0, 10)}</p>
+              <p className="text-gray-700 dark:text-gray-300">{comment.body}</p>
 
               <CommentVote comment={comment} />
             </li>
@@ -141,13 +143,13 @@ export default function CommentsList(props) {
       </ul>
       {areMorePages ? (
         <button
-          className="btn self-stretch bg-white max-w-50 m-2 mb-5 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-500"
+          className="btn self-stretch bg-white text-gray-700 max-w-50 m-2 mb-5 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-500"
           onClick={handleLoadMoreComments}
         >
           Load More
         </button>
       ) : (
-        <h2 className="dark:text-gray-300 mb-5">You're up to date!</h2>
+        <h2 className="text-gray-700 dark:text-gray-300 mb-5">You're up to date!</h2>
       )}
       {isLoading && page !== 1 && <Loading />}
     </div>

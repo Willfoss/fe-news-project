@@ -49,7 +49,7 @@ export default function Header() {
             ></Moon>
           )}
           {loggedInUser.username === "" ? (
-            <div className="dropdown dropdown-end ">
+            <div className="dropdown dropdown-end bg-white dark:bg-gray-800">
               <img
                 tabIndex={0}
                 role="button"
