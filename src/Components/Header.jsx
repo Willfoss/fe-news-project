@@ -19,20 +19,20 @@ export default function Header() {
   };
 
   return (
-    <div className="navbar border-b-2 dark:border-gray-300 w-screen flex items-center justify-center dark:bg-gray-900">
+    <div className="navbar border-b-2 text-gray-700 bg-white border-gray-300 dark:border-gray-300 w-screen flex items-center justify-center dark:bg-gray-900">
       <div className="w-[1000px] flex items-center justify-between ">
         <div className="flex items-center cursor-pointer" onClick={handleHeaderClick}>
           <Newspaper className="newspaper dark:text-gray-300 min-w-[50px] w-[50px]"></Newspaper>
-          <h1 className="min-w-[80px] dark:text-gray-300 px-2">NC news</h1>
+          <h1 className="min-w-[80px] text-gray-700 dark:text-gray-300 px-2">NC news</h1>
         </div>
 
         <div className=" flex justify-center items-center">
-          <ul className=" h-[40px] flex items-center justify-evenly justify-end dark:text-gray-300 ">
+          <ul className=" h-[40px] text-gray-700 flex items-center justify-evenly justify-end dark:text-gray-300 ">
             <Link to="/articles" className="px-3">
               Articles
             </Link>
             {loggedInUser.username !== "" && (
-              <Link to="postarticle" className="px-3">
+              <Link to="postarticle" className="px-3 text-gray-700">
                 Post an Article
               </Link>
             )}
@@ -58,14 +58,14 @@ export default function Header() {
               ></img>
               <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
                 <li>
-                  <Link className="dark:text-gray-300" to="/login">
+                  <Link className="text-gray-700 dark:text-gray-300 " to="/login">
                     Login
                   </Link>
                 </li>
               </ul>
             </div>
           ) : (
-            <div className="dropdown dropdown-end dark:bg-gray-800 ">
+            <div className="dropdown dropdown-end bg-white dark:bg-gray-800 ">
               <img
                 tabIndex={0}
                 role="button"
@@ -73,13 +73,13 @@ export default function Header() {
                 src={!loggedInUser.avatar_url ? user : loggedInUser.avatar_url}
               ></img>
 
-              <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow ">
+              <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box bg-white dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow ">
                 <li>
-                  <p className="pointer-events-none focus:bg-white ml-0 p-0 dark:text-gray-300">Logged in as {loggedInUser.username}</p>
-                  <Link className="dark:text-gray-300 dark:hover:bg-gray-400" to="/user">
+                  <p className="pointer-events-none text-gray-700 focus:bg-white ml-0 p-0 dark:text-gray-300">Logged in as {loggedInUser.username}</p>
+                  <Link className="text-gray-700 dark:text-gray-300 dark:hover:bg-gray-400" to="/user">
                     User Profile
                   </Link>
-                  <Link className="dark:text-gray-300 dark:hover:bg-gray-400" onClick={handleSignOutClick}>
+                  <Link className="text-gray-700 dark:text-gray-300 dark:hover:bg-gray-400" onClick={handleSignOutClick}>
                     Sign Out
                   </Link>
                 </li>
