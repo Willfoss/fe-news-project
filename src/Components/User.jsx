@@ -35,7 +35,7 @@ export default function User() {
       <div id="user-profile-container" className="flex flex-col justify-center w-80 items-center card  p-4 m-2">
         <img className="rounded-xl h-60 object:fi border-2 border-black " src={loggedInUser.avatar_url}></img>
         <div id="username-container" className="flex">
-          <label className="mr-4 dark:text-gray-300">Username:</label>
+          <label className="mr-4 text-gray-700 dark:text-gray-300">Username:</label>
           <p className="text-gray-700 dark:text-gray-300">{loggedInUser.username}</p>
         </div>
       </div>

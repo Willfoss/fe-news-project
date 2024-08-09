@@ -118,7 +118,7 @@ export default function PostArticle() {
         <label className="flex flex-col justify-center m-2 text-gray-700 dark:text-gray-300 dark:bg-gray-800">
           Body:
           <textarea
-            className="textarea textarea-bordered  min-h-72 max-w-xs bg white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+            className="textarea textarea-bordered  min-h-72 max-w-xs bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
             placeholder="Type here"
             value={bodyInput}
             onChange={handleBodyInputChange}
