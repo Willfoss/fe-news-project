@@ -15,7 +15,24 @@ export default function CommentVote(props) {
   const [commentError, setCommentError] = useState("");
 
   function incrementVotes() {
-    if ((commentPositiveVoteNumber === 0 && optimisticVotes === 0) || commentNegativeVoteNumber === 1) {
+    if (commentPositiveVoteNumber === 0 && commentNegativeVoteNumber === 1) {
+      setOptimisticVotes((currentOptimisticvotes) => {
+        setCommentPositiveVoteNumber(1);
+        localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 1);
+        setCommentNegativeVoteNumber(0);
+        localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 0);
+
+        return currentOptimisticvotes + 2;
+      });
+      patchCommentByCommentId(comment.comment_id, 2).catch(() => {
+        setOptimisticVotes((currentOptimisticvotes) => {
+          setCommentPositiveVoteNumber(0);
+          localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 0);
+          setCommentError("whoops something went wrong! please try again");
+          return currentOptimisticvotes - 2;
+        });
+      });
+    } else if (commentPositiveVoteNumber === 0) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setCommentPositiveVoteNumber(1);
         localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 1);
@@ -32,10 +49,45 @@ export default function CommentVote(props) {
           return currentOptimisticvotes - 1;
         });
       });
+    } else if (commentPositiveVoteNumber === 1) {
+      if (commentPositiveVoteNumber === 1) {
+        setOptimisticVotes((currentOptimisticvotes) => {
+          setCommentPositiveVoteNumber(0);
+          localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 0);
+          setCommentNegativeVoteNumber(0);
+          localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 0);
+
+          return currentOptimisticvotes - 1;
+        });
+        patchCommentByCommentId(comment.comment_id, -1).catch(() => {
+          setOptimisticVotes((currentOptimisticvotes) => {
+            setCommentPositiveVoteNumber(1);
+            localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 1);
+            setCommentError("whoops something went wrong! please try again");
+            return currentOptimisticvotes + 1;
+          });
+        });
+      }
     }
   }
   function decrementVote() {
-    if ((commentNegativeVoteNumber === 0 && optimisticVotes === 0) || commentPositiveVoteNumber === 1) {
+    if (commentPositiveVoteNumber === 1 && commentNegativeVoteNumber === 0) {
+      setOptimisticVotes((currentOptimisticvotes) => {
+        setCommentNegativeVoteNumber(1);
+        localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 1);
+        setCommentPositiveVoteNumber(0);
+        localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 0);
+        return currentOptimisticvotes - 2;
+      });
+      patchCommentByCommentId(comment.comment_id, -2).catch(() => {
+        setOptimisticVotes((currentOptimisticvotes) => {
+          setCommentNegativeVoteNumber(0);
+          localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 0);
+          setCommentError("whoops something went wrong! please try again");
+          return currentOptimisticvotes + 2;
+        });
+      });
+    } else if (commentNegativeVoteNumber === 0) {
       setOptimisticVotes((currentOptimisticvotes) => {
         setCommentNegativeVoteNumber(1);
         localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 1);
@@ -49,6 +101,22 @@ export default function CommentVote(props) {
           localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 0);
           setCommentError("whoops something went wrong! please try again");
           return currentOptimisticvotes + 1;
+        });
+      });
+    } else if (commentNegativeVoteNumber === 1) {
+      setOptimisticVotes((currentOptimisticvotes) => {
+        setCommentNegativeVoteNumber(0);
+        localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 0);
+        setCommentPositiveVoteNumber(0);
+        localStorage.setItem(`commentPosVoteCount${comment.comment_id}`, 0);
+        return currentOptimisticvotes + 1;
+      });
+      patchCommentByCommentId(comment.comment_id, 1).catch(() => {
+        setOptimisticVotes((currentOptimisticvotes) => {
+          setCommentNegativeVoteNumber(0);
+          localStorage.setItem(`commentNegVoteCount${comment.comment_id}`, 1);
+          setCommentError("whoops something went wrong! please try again");
+          return currentOptimisticvotes - 1;
         });
       });
     }
