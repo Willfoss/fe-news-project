@@ -12,7 +12,7 @@ export default function ArticleCard(props) {
   return (
     <li className="card bg-white self-stretch bg-base-100 shadow-xl max-w-[750px] p-4 m-4 dark:bg-gray-800">
       <Link to={`/articles/${article.article_id}`} article_id={article.article_id}>
-        <p className={` ${loggedInUser.username === article.author ? "text-blue-500 dark:text-blue-500" : "text-gray-700dark:text-gray-300"}`}>
+        <p className={` ${loggedInUser.username === article.author ? "text-blue-500 dark:text-blue-500" : "text-gray-700 dark:text-gray-300"}`}>
           by: {article.author}
         </p>
         <h2 className="card-title text-gray-700 dark:text-gray-300">{article.title}</h2>

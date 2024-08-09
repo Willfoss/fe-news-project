@@ -56,9 +56,9 @@ export default function Header() {
                 className="min-w-[30px] w-[30px]  rounded-full hover:outline hover:outline-orange-400 "
                 src={user}
               ></img>
-              <ul tabIndex={0} className="menu dropdown-content bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
+              <ul tabIndex={0} className="menu dropdown-content bg-white bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
                 <li>
-                  <Link className="text-gray-700 dark:text-gray-300 " to="/login">
+                  <Link className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/login">
                     Login
                   </Link>
                 </li>

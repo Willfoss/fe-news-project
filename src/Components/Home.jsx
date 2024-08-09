@@ -59,7 +59,7 @@ export default function Home(props) {
       </ul>
       {areMorePages ? (
         <button
-          className="btn bg-white self-stretch max-w-85 m-4 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-500"
+          className="btn bg-white self-stretch max-w-85 m-4 bg-white dark:bg-gray-800 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-500"
           onClick={handleLoadMoreArticles}
         >
           Load More
