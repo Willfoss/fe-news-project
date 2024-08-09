@@ -23,7 +23,7 @@ export default function ArticleCard(props) {
           <img className="rounded-md " src={article.article_img_url} alt={`image for article ${article.title}`} />
         </figure>
       </Link>
-      <div className="card-body flex-row justify-startitems-center">
+      <div className="card-body flex-row justify-start items-center">
         <ArticleVotes className="card-body flex-row justify-start items-center" article={article} />
         <p className="flex justify-end text-gray-700 dark:text-gray-300">{article.comment_count}</p>
         <Link to={`/articles/${article.article_id}`}>

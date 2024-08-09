@@ -119,14 +119,14 @@ export default function CommentVote(props) {
       <div className="card-body flex-row justify-start items-center ">
         <SquareArrowUp
           onClick={incrementVotes}
-          className={`text-gray-700 dark:text-gray-300 ${
+          className={`text-gray-700 dark:text-gray-300 cursor-pointer ${
             commentPositiveVoteNumber === 1 ? "text-green-500 dark:text-green-500" : "hover:text-green-300 dark:hover:text-green-500"
           }`}
         ></SquareArrowUp>
-        <h3 className="text-gray-700 dark:text-gray-300">{comment.votes + optimisticVotes}</h3>
+        <h3 className="text-gray-700 dark:text-gray-300 ">{comment.votes + optimisticVotes}</h3>
         <SquareArrowDown
           onClick={decrementVote}
-          className={`text-gray-700 dark:text-gray-300 ${
+          className={`text-gray-700 dark:text-gray-300 cursor-pointer ${
             commentNegativeVoteNumber === 1 ? "text-red-500 dark:text-red-500" : "hover:text-red-500 dark:hover:text-red-500"
           }`}
         ></SquareArrowDown>
