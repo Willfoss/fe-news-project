@@ -75,7 +75,7 @@ export default function Topics(props) {
         </button>
         <ul tabIndex={0} className="menu dropdown-content bg-white bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
           <li
-            className={`btn mr-3  text-gray-700 dark:text-gray-300 ${
+            className={`btn mr-3  text-gray-700 dark:text-gray-300 border-white dark:border-gray-800 dark:hover:bg-gray-500 ${
               "All Topics" === selectedTopic ? "bg-gray-400 dark:bg-gray-500" : "dark:bg-gray-800 bg-white"
             }`}
             onClick={handleTopicSelectorClick}
@@ -86,7 +86,7 @@ export default function Topics(props) {
           {topicsList.map((topic) => {
             return (
               <li
-                className={`btn mr-3  text-gray-700 dark:text-gray-300 border-white dark:border-gray-800 ${
+                className={`btn mr-3  text-gray-700 dark:text-gray-300 border-white dark:border-gray-800 dark:hover:bg-gray-500 ${
                   topic.slug === selectedTopic ? "bg-gray-400 dark:bg-gray-500" : "dark:bg-gray-800 bg-white"
                 }`}
                 onClick={handleTopicSelectorClick}
