@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Moon, Sun, Newspaper, Menu } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import user from "../assets/user.png";
+import defaultUserPicture from "../assets/user.png";
 import { ThemeContext } from "../Context/ThemeContext";
 import { UserContext } from "../Context/UserContext";
 
@@ -109,7 +109,7 @@ export default function Header() {
                 tabIndex={0}
                 role="button"
                 className="min-w-[30px] w-[30px]  rounded-full hover:outline hover:outline-orange-400 "
-                src={user}
+                src={defaultUserPicture}
               ></img>
               <ul tabIndex={0} className="menu dropdown-content bg-white bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
                 <li onClick={handleDropdownUnfocus}>
