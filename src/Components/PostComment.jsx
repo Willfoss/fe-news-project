@@ -47,7 +47,7 @@ export default function PostComment(props) {
   return (
     <div className="flex flex-col self-stretch justify-center ">
       {loggedInUser.username !== "" ? (
-        <form onSubmit={handleCommentSubmit} className="flex  flex-col justify-center items-center shadow-md pt-2 mt-2">
+        <form onSubmit={handleCommentSubmit} className="flex  flex-col justify-center items-center pt-2 mt-2">
           <label className="flex self-stretch flex-col">
             <textarea
               className="textarea w-full bg-white text-gray-700 textarea-bordered h-40 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-400"

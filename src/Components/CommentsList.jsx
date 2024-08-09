@@ -115,7 +115,9 @@ export default function CommentsList(props) {
               key={comment.comment_id}
             >
               <div className="flex justify-between">
-                <p className={` ${loggedInUser.username === comment.author ? "text-blue-500 dark:text-blue-500" : "dark:text-gray-300"}`}>
+                <p
+                  className={` ${loggedInUser.username === comment.author ? "text-blue-500 dark:text-blue-500" : "text-gray-700 dark:text-gray-300"}`}
+                >
                   {comment.author}
                 </p>
                 {isDeleteCustomError && comment.comment_id === deletedCommentId && (

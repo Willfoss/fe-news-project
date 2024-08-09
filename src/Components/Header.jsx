@@ -60,8 +60,8 @@ export default function Header() {
                 </Link>
               )}
               {loggedInUser.username !== "" && (
-                <Link to="postarticle" className="px-3 text-gray-700 dark:text-gray-300">
-                  Post an Article
+                <Link to="addtopic" className="px-3 text-gray-700 dark:text-gray-300">
+                  Add a Topic
                 </Link>
               )}
             </ul>
@@ -86,7 +86,7 @@ export default function Header() {
                     <Link
                       onClick={handleDropdownUnfocus}
                       className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400"
-                      to="/postarticle"
+                      to="/addtopic"
                     >
                       Add a Topic
                     </Link>
