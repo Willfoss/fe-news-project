@@ -12,15 +12,16 @@ export default function ArticleCard(props) {
   return (
     <li className="card bg-white self-stretch bg-base-100 shadow-xl max-w-[750px] p-4 m-2 dark:bg-gray-800">
       <Link to={`/articles/${article.article_id}`} article_id={article.article_id}>
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex justify-between">
           <p className={` ${loggedInUser.username === article.author ? "text-blue-700 dark:text-blue-700" : "text-gray-700 dark:text-gray-300"}`}>
             by: {article.author}
           </p>
-          <h2 className="card-title text-gray-700 dark:text-gray-300">{article.title}</h2>
+          <p className="text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-300 pl-1 pr-1 rounded-md">{article.topic}</p>
         </div>
+        <h2 className="card-title text-gray-700 dark:text-gray-300">{article.title}</h2>
 
-        <figure>
-          <img className="rounded-md " src={article.article_img_url} alt={`image for article ${article.title}`} />
+        <figure classname="h-full flex">
+          <img className="w-[720px] rounded-md object-cover" src={article.article_img_url} alt={`image for article ${article.title}`} />
         </figure>
       </Link>
       <div className="card-body flex-row justify-start items-center">

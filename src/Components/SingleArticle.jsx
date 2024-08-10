@@ -44,20 +44,21 @@ export default function SingleArticle() {
   return (
     <div className="single-article-container flex flex-col justify-center items-center mt-8">
       <li className="card bg-base-100 bg-white self-stretch max-w-[750px] shadow-xl p-4 m-2 dark:bg-gray-800">
-        <div className="flex flex-col justify-center items-center ">
+        <div className="flex justify-between">
           <p
             className={` ${loggedInUser.username === singleArticle.author ? "text-blue-500 dark:text-blue-500" : "text-gray-700 dark:text-gray-300"}`}
           >
             by: {singleArticle.author}
           </p>
-          <h2 className="card-title text-gray-700 dark:text-gray-300">{singleArticle.title}</h2>
+          <p className="text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-300 pl-1 pr-1 rounded-md">{singleArticle.topic}</p>
         </div>
+        <h2 className="card-title text-gray-700 dark:text-gray-300">{singleArticle.title}</h2>
 
         <figure>
           <img className="rounded-md" src={singleArticle.article_img_url} alt={`image for article ${singleArticle.title}`} />
         </figure>
-        <p className="ml-2 text-small text-gray-700 dark:text-gray-300">Posted on {date}</p>
-        <p className="ml-2 text-gray-700  dark:text-gray-300">{singleArticle.body}</p>
+        <p className=" text-small text-gray-700 dark:text-gray-300">Posted on {date}</p>
+        <p className="text-gray-700  dark:text-gray-300">{singleArticle.body}</p>
         <div className="card-body flex-row justify-start items-center">
           <ArticleVotes className="card-body flex-row justify-start items-center" article={singleArticle} />
           <p className="flex justify-end text-gray-700  dark:text-gray-300 ">{singleArticle.comment_count + optimisticCommentCount}</p>
