@@ -55,7 +55,7 @@ export default function SingleArticle() {
         <h2 className="card-title text-gray-700 dark:text-gray-300">{singleArticle.title}</h2>
 
         <figure>
-          <img className="rounded-md" src={singleArticle.article_img_url} alt={`image for article ${singleArticle.title}`} />
+          <img className="w-[720px] rounded-md object-cover" src={singleArticle.article_img_url} alt={`image for article ${singleArticle.title}`} />
         </figure>
         <p className=" text-small text-gray-700 dark:text-gray-300">Posted on {date}</p>
         <p className="text-gray-700  dark:text-gray-300">{singleArticle.body}</p>
