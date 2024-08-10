@@ -26,7 +26,7 @@ export default function ArticleCard(props) {
       <div className="card-body flex-row justify-start items-center">
         <ArticleVotes className="card-body flex-row justify-start items-center" article={article} />
         <p className="flex justify-end text-gray-700 dark:text-gray-300">{article.comment_count}</p>
-        <Link to={`/articles/${article.article_id}`}>
+        <Link aria-label="to single article page" to={`/articles/${article.article_id}`}>
           <MessageCircle className="text-gray-700 dark:text-gray-300" />
         </Link>
       </div>
