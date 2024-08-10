@@ -57,11 +57,11 @@ export default function Signup() {
   if (isError) return <Error />;
 
   return (
-    <div className="flex justify-center items-center w-screen">
+    <div className="flex self-center justify-center items-center w-screen">
       <form
         onSubmit={handleUserCreation}
         id="login-container"
-        className="flex flex-col border-2 w-full max-w-[500px] rounded p-5 mt-10 mb-10 dark:border-gray-500 ml-5 mr-5"
+        className="flex flex-col border-2 w-full max-w-[500px] rounded p-5 dark:border-gray-500 ml-5 mr-5"
       >
         <label className="flex flex-col text-gray-700 justify-center mt-2 mb-2 ml-0 mr-0 dark:text-gray-300">
           Enter a username:
