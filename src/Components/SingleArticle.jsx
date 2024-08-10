@@ -42,7 +42,7 @@ export default function SingleArticle() {
   }
 
   return (
-    <div className="single-article-container flex flex-col justify-center items-center m-2">
+    <div className="single-article-container flex flex-col justify-center items-center ">
       <li className="card bg-base-100 bg-white self-stretch max-w-[750px] shadow-xl p-4 m-2 dark:bg-gray-800">
         <div className="flex flex-col justify-center items-center ">
           <p
