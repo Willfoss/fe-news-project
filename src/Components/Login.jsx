@@ -42,30 +42,36 @@ export default function Login() {
   }
 
   return (
-    <section id="login-container" className="flex flex-col self-start mt-20 justify-start item start border-2 rounded p-5">
-      <label className="flex flex-col text-gray-700 justify-center dark:text-gray-300" htmlFor="username-input">
-        Select a Username:
-        <select
-          value={selectedUser}
-          className="select select-bordered w-60 max-w-xs bg-white text-gray-700 dark:text-gray-300 dark:bg-gray-800"
-          onChange={handleUserSelect}
-          aria-label="username drop down menu"
+    <section id="login-container" className="self-center flex justify-center items-center w-screen">
+      <div className="flex flex-col border-2 w-full max-w-[500px] rounded p-5 mt-10 mb-10 dark:border-gray-500 ml-5 mr-5">
+        <label className="flex flex-col text-gray-700 justify-center dark:text-gray-300" htmlFor="username-input">
+          Select a Username:
+          <select
+            value={selectedUser}
+            className="select select-bordered max-w-xl bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+            onChange={handleUserSelect}
+            aria-label="username drop down menu"
+          >
+            {userList.map((user) => {
+              return (
+                <option className="" key={user.username} value={user.username}>
+                  {user.username}
+                </option>
+              );
+            })}
+          </select>
+        </label>
+        <Link
+          to="/"
+          onClick={handleLoginClick}
+          className="btn bg-white text-gray-700 mt-5 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500"
         >
-          {userList.map((user) => {
-            return (
-              <option className="" key={user.username} value={user.username}>
-                {user.username}
-              </option>
-            );
-          })}
-        </select>
-      </label>
-      <Link to="/" onClick={handleLoginClick} className="btn bg-white text-gray-700 mt-5 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500">
-        Login
-      </Link>
-      <Link to="/signup" className="btn bg-white mt-20 text-gray-700 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500">
-        Not a user? Sign up!
-      </Link>
+          Login
+        </Link>
+        <Link to="/signup" className="btn bg-white mt-20 text-gray-700 dark:text-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500">
+          Not a user? Sign up!
+        </Link>
+      </div>
     </section>
   );
 }

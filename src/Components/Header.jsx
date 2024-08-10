@@ -67,7 +67,12 @@ export default function Header() {
             </ul>
           ) : (
             <div className="dropdown dropdown-end bg-white dark:bg-gray-800">
-              <Menu tabIndex={0} role="button" className="imp-menu text-gray-700 dark:text-gray-300 dark:bg-gray-900"></Menu>
+              <Menu
+                tabIndex={0}
+                aria-label="website navigation dropdown"
+                role="button"
+                className="imp-menu text-gray-700 dark:text-gray-300 dark:bg-gray-900"
+              ></Menu>
               <ul tabIndex={0} className="menu dropdown-content bg-white bg-base-100 rounded-box dark:bg-gray-800 z-[1] mt-4 w-52 p-2 shadow">
                 <li>
                   <Link onClick={handleDropdownUnfocus} className="text-gray-700 dark:text-gray-300 hover-gray-400 dark:hover:bg-gray-400" to="/">
@@ -104,7 +109,7 @@ export default function Header() {
             ></Moon>
           )}
           {loggedInUser.username === "" ? (
-            <div aria-label="order by dropdown" className="dropdown dropdown-end bg-white dark:bg-gray-800">
+            <div aria-label="user actions dropdown" className="dropdown dropdown-end bg-white dark:bg-gray-800">
               <img
                 tabIndex={0}
                 role="button"
@@ -121,7 +126,7 @@ export default function Header() {
               </ul>
             </div>
           ) : (
-            <div aria-label="order by dropdown" className="dropdown dropdown-end bg-white dark:bg-gray-800 ">
+            <div aria-label="user actions dropdown" className="dropdown dropdown-end bg-white dark:bg-gray-800 ">
               <img
                 tabIndex={0}
                 role="button"

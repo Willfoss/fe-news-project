@@ -54,7 +54,7 @@ export default function CommentsList(props) {
   }
 
   return (
-    <div className="flex self-stretch flex-col justify-center items-center w-100 m-5">
+    <div className="flex self-stretch flex-col justify-center items-center  m-2">
       <PostComment
         article_id={article_id}
         setTemporaryPostedCommentList={setTemporaryPostedCommentList}
@@ -145,7 +145,7 @@ export default function CommentsList(props) {
       </ul>
       {areMorePages ? (
         <button
-          className="btn self-stretch bg-white text-gray-700 max-w-50 m-2 mb-5 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-500"
+          className="btn self-stretch bg-white text-gray-700 max-w-50 mb-5 dark:text-gray-300 dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-500"
           onClick={handleLoadMoreComments}
         >
           Load More

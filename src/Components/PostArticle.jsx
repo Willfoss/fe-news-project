@@ -77,16 +77,16 @@ export default function PostArticle() {
       <form
         onSubmit={handleArticlePost}
         aria-label="post articles form"
-        id="login-container"
-        className="flex flex-col border-2 rounded p-5 mt-10 mb-10 dark:border-gray-500"
+        id="postArticle-container"
+        className="flex flex-col border-2 w-full max-w-[500px] rounded p-5 mt-10 mb-10 dark:border-gray-500 ml-5 mr-5"
       >
-        <label aria-label="select a topic" className="flex flex-col text-gray-700 justify-center dark:text-gray-300" htmlFor="username-input">
+        <label aria-label="select a topic" className="flex flex-col text-gray-700 justify-center dark:text-gray-300 " htmlFor="username-input">
           Select a Topic:
           <select
             onChange={handleTopicChange}
             value={topicInput}
             aria-label="select a topic"
-            className="select select-bordered max-w-xs bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+            className="select select-bordered max-w-xl bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
           >
             <option></option>
             {topicsList.map((topic) => {
@@ -98,7 +98,7 @@ export default function PostArticle() {
             })}
           </select>
         </label>
-        <label className="flex flex-col justify-center m-2 text-gray-700 dark:text-gray-300">
+        <label className="flex flex-col justify-center text-gray-700 dark:text-gray-300 mt-2 mb-2 ml-0 mr-0">
           Title:
           <input
             type="text"
@@ -110,28 +110,28 @@ export default function PostArticle() {
             required
           />
         </label>
-        <label className="flex flex-col justify-center m-2 text-gray-700 dark:text-gray-300">
+        <label className="flex flex-col justify-center text-gray-700 dark:text-gray-300 mt-2 mb-2 ml-0 mr-0">
           Enter an image URL:
           <input
             type="url"
             placeholder="Type here"
             onChange={handleUrlInputChange}
             value={urlInput}
-            className="input input-bordered w-full bg-white text-gray-700 max-w-xs dark:bg-gray-800 dark:text-gray-300"
+            className="input input-bordered w-full bg-white text-gray-700 max-w-xl dark:bg-gray-800 dark:text-gray-300"
             minLength={5}
           />
         </label>
-        <label className="flex flex-col justify-center m-2 text-gray-700 dark:text-gray-300 dark:bg-gray-900">
+        <label className="flex flex-col justify-center text-gray-700 dark:text-gray-300 dark:bg-gray-900 mt-2 mb-2 ml-0 mr-0">
           Body:
           <textarea
-            className="textarea textarea-bordered  min-h-72 max-w-xs bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+            className="textarea textarea-bordered  min-h-72 max-w-xl bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-300"
             placeholder="Type here"
             value={bodyInput}
             onChange={handleBodyInputChange}
           ></textarea>
         </label>
         {isCustomError && <p className="text-red-500">*Topic and Title are required</p>}
-        <button className="btn bg-white text-gray-700 dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500">
+        <button className="btn bg-white mt-4 text-gray-700 dark:bg-gray-800 dark:border-gray-800 dark:text-gray-300 dark:hover:bg-gray-500 dark:focus:bg-gray-500">
           Post
         </button>
       </form>
