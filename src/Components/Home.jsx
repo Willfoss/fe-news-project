@@ -64,7 +64,7 @@ export default function Home(props) {
           Load More
         </button>
       ) : (
-        <h2 className="dark:text-gray-300">You're up to date!</h2>
+        <h2 className="dark:text-gray-300 mt-5">You're up to date!</h2>
       )}
       {isLoading && page !== 1 && <Loading />}
     </section>

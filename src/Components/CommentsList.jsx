@@ -151,7 +151,7 @@ export default function CommentsList(props) {
           Load More
         </button>
       ) : (
-        <h2 className="text-gray-700 dark:text-gray-300 mb-5">You're up to date!</h2>
+        <h2 className="text-gray-700 dark:text-gray-300 mt-3 mb-5">You're up to date!</h2>
       )}
       {isLoading && page !== 1 && <Loading />}
     </div>
