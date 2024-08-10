@@ -40,6 +40,14 @@ Then install the various npm packages to run the project:
 
     npm install
 
+Run the development server
+
+    npm run dev
+
+Go to your browser and navigate to
+
+    http://localhost:5173
+
 ---
 
 ## Version Requirements
