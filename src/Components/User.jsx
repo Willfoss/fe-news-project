@@ -45,7 +45,7 @@ export default function User() {
       </div>
       <h2 className="mt-10 text-gray-700 dark:text-gray-300">My Articles</h2>
       <ul></ul>
-      <ul id="articleList-container" className="flex flex-col justify-center">
+      <ul id="articleList-container" className="flex flex-col justify-center mb-10">
         {userArticleList.map((article) => {
           return <ArticleCard article={article} key={article.article_id} />;
         })}
