@@ -20,7 +20,7 @@ export default function ArticleCard(props) {
         </div>
         <h2 className="card-title text-gray-700 dark:text-gray-300">{article.title}</h2>
 
-        <figure classname="h-full flex">
+        <figure className="h-full flex">
           <img className="w-[720px] rounded-md object-cover" src={article.article_img_url} alt={`image for article ${article.title}`} />
         </figure>
       </Link>

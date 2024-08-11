@@ -57,7 +57,7 @@ export default function Topics(props) {
   }, []);
 
   //hmm do i want these as loading will appear twice on the screen with the article loading?
-  if (isLoading) return <Loading />;
+
   if (error) {
     return <Error error={error} />;
   }
