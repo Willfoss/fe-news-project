@@ -41,7 +41,7 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="navbar border-b-2 text-gray-700 bg-white border-gray-300 dark:border-gray-300 w-screen flex items-center justify-center dark:bg-gray-900">
+    <div className="navbar border-b-2 text-gray-700 bg-white border-gray-300 dark:border-gray-300 w-full flex items-center justify-center dark:bg-gray-900">
       <div className="w-[1000px] flex items-center justify-between ">
         <div className="flex items-center cursor-pointer" onClick={handleHeaderClick}>
           <Newspaper className="newspaper dark:text-gray-300 min-w-[50px] w-[50px]"></Newspaper>
