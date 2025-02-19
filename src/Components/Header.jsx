@@ -131,7 +131,7 @@ export default function Header() {
                 tabIndex={0}
                 role="button"
                 className="  dark:bg-white min-h-[30px] h-[30px] min-w-[30px] w-[30px] object-cover rounded-full hover:outline hover:outline-orange-400 rounded-full "
-                src={!loggedInUser.avatar_url ? user : loggedInUser.avatar_url}
+                src={!loggedInUser.avatar_url ? defaultUserPicture : loggedInUser.avatar_url}
                 alt="logged in user profile picture"
               ></img>
 
